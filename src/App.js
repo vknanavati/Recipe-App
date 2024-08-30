@@ -46,17 +46,42 @@ function App() {
           </Grid>
         </Grid>
       </form>
-      {foodData && (
+      {foodData && foodData.hits && (
         <Grid container justifyContent={"center"}>
-          <Grid item sm={8} sx={{boxShadow: 6, margin: 4, padding: 2, textAlign: "center"}}>
-            <Typography>{foodData.hits[0].recipe.label}</Typography>
-            <img alt="food-photo" src={foodData.hits[0].recipe.image}/>
-            <Typography>{foodData.hits[0].recipe.ingredients[0].food}</Typography>
-            <Typography>{foodData.hits[0].recipe.ingredients[1].food}</Typography>
-            <Typography>{foodData.hits[0].recipe.ingredientLines[0]}</Typography>
-            <Typography>{foodData.hits[0].recipe.ingredientLines[1]}</Typography>
-            <Typography>{foodData.hits[0].recipe.url}</Typography>
+          {foodData.hits.map((hit, index) => (
+          <Grid
+            item
+            sm={8}
+            sx={{
+              boxShadow: 6,
+              margin: 4,
+              padding: 2,
+              textAlign: "center",
+              width: "370px",
+              height: "auto"
+            }}
+          >
+            <Typography variant="h6">{hit.recipe.label}</Typography>
+            <img alt="food-photo" src={hit.recipe.image}/>
+
+            <Typography variant="subtitle1">Ingredients:</Typography>
+            {hit.recipe.ingredients.map((ingredient, i)=> (
+              <Typography key={i}>{ingredient.food}</Typography>
+
+            ))}
+
+            <Typography variant="subtitle1">Quantities:</Typography>
+            {hit.recipe.ingredientLines.map((line, i)=>(
+              <Typography key={i}>{line}</Typography>
+            ))}
+
+            <Typography sx={{wordWrap: "break-word", marginTop: 2}}>
+              <a href={hit.recipe.url} target="_blank" rel="noopener noreferrer">
+                Full Recipe
+              </a>
+            </Typography>
           </Grid>
+          ))}
         </Grid>
       )}
     </Container>
