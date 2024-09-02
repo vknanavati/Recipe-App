@@ -1,89 +1,40 @@
-import {useState} from 'react'
-import { Button,Container, TextField, Typography} from '@mui/material';
-import Grid from '@mui/material/Grid2';
+import { AppBar,Container,Toolbar, Typography, Box} from '@mui/material';
+import {Routes, Route, Link} from 'react-router-dom';
+import {Favorites} from './components/Favorites'
+import {Home} from './components/Home'
 
 
 function App() {
-  console.log(process.env)
 
-  const [foodType, setFoodType] = useState("")
-  const [foodData, setFoodData] = useState("")
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log("Searching city: ", foodType, process.env.REACT_APP_API_KEY, process.env.REACT_APP_ID)
-    fetch(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${process.env.REACT_APP_ID}&app_key=${process.env.REACT_APP_API_KEY}&cuisineType=${foodType}`, {
-    })
-    .then(response => response.json())
-    .then(data =>{
-        console.log("My recipe data: ", data);
-        setFoodData(data)
-    })
-    .catch(error => console.error('Error:', error))
-  }
   return (
-    <Container>
-      <form onSubmit={handleSubmit}>
-        <Grid container justifyContent={"center"} direction={"column"} alignItems={"center"}>
-          <Typography
-            variant="h4"
-          >
-            Recipe Search
-          </Typography>
-          <Grid>
-            <TextField
-              onChange={e=>setFoodType(e.target.value)}
-            >
-            </TextField>
-          </Grid>
-          <Grid>
-            <Button
-              type="submit"
-              variant="contained"
-            >
-              Submit
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-      {foodData && foodData.hits && (
-        <Grid container justifyContent={"center"}>
-          {foodData.hits.map((hit, index) => (
-          <Grid
-            item
-            sm={8}
-            sx={{
-              boxShadow: 6,
-              margin: 4,
-              padding: 2,
-              textAlign: "center",
-              width: "370px",
-              height: "auto"
-            }}
-          >
-            <Typography variant="h6">{hit.recipe.label}</Typography>
-            <img alt="food-photo" src={hit.recipe.image}/>
-
-            <Typography variant="subtitle1">Ingredients:</Typography>
-            {hit.recipe.ingredients.map((ingredient, i)=> (
-              <Typography key={i}>{ingredient.food}</Typography>
-
-            ))}
-
-            <Typography variant="subtitle1">Quantities:</Typography>
-            {hit.recipe.ingredientLines.map((line, i)=>(
-              <Typography key={i}>{line}</Typography>
-            ))}
-
-            <Typography sx={{wordWrap: "break-word", marginTop: 2}}>
-              <a href={hit.recipe.url} target="_blank" rel="noopener noreferrer">
-                Full Recipe
-              </a>
+    <Container maxWidth={"false"} disableGutters>
+      <AppBar position="static">
+        <Toolbar>
+          <Box sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  textAlign: "center",
+                  gap:2,
+                  ml: "auto",
+                  fontSize: 20,
+                  fontWeight: 500,
+                  whiteSpace: "nowrap",
+                  overflow: "auto",
+                  flexShrink: 1
+                }}>
+            <Typography variant="h6" component={Link} to="/" color="inherit" sx={{ textDecoration: 'none' }}>
+                  Home
             </Typography>
-          </Grid>
-          ))}
-        </Grid>
-      )}
+            <Typography variant="h6" component={Link} to="/favorites" color="inherit" sx={{ textDecoration: 'none' }}>
+                  Favorite Recipes
+            </Typography>
+          </Box>
+        </Toolbar>
+      </AppBar>
+    <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/favorites" element={<Favorites/>}/>
+    </Routes>
     </Container>
   );
 }
