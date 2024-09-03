@@ -1,13 +1,9 @@
 import {useState} from 'react'
 import {Button,Container,TextField, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
-// import IconButton from '@mui/joy/IconButton';
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-import IconButton from '@mui/joy/IconButton'
+import { RecipeCard } from './RecipeCard';
 
-
-
-export function Home() {
+export function Home({addFavorite}) {
     console.log(process.env)
 
     const [foodType, setFoodType] = useState("")
@@ -53,50 +49,17 @@ export function Home() {
           </Grid>
         </form>
         {foodData && foodData.hits && (
-          <Grid container justifyContent={"center"}>
-            {foodData.hits.map((hit, index) => (
-            <Grid
-              item
-              sm={8}
-              sx={{
-                boxShadow: 6,
-                margin: 4,
-                padding: 2,
-                textAlign: "center",
-                width: "370px",
-                height: "auto"
-              }}
-            >
-                <IconButton variant="solid">
-                    <FavoriteBorder/>
-                </IconButton>
-                <Typography variant="h6">{hit.recipe.label}</Typography>
-                <img alt="food-photo" src={hit.recipe.image}/>
-
-                <Typography variant="subtitle1">Ingredients:</Typography>
-              {hit.recipe.ingredients.map((ingredient, i)=> (
-                <Typography key={i}>{ingredient.food}</Typography>
-
-              ))}
-
-                <Typography variant="subtitle1">Quantities:</Typography>
-              {hit.recipe.ingredientLines.map((line, i)=>(
-                <Typography key={i}>{line}</Typography>
-              ))}
-
-                <Typography sx={{wordWrap: "break-word", marginTop: 2}}>
-                    <a href={hit.recipe.url} target="_blank" rel="noopener noreferrer">
-                  Full Recipe
-                    </a>
-                </Typography>
+            <Grid container justifyContent={"center"}>
+                {foodData.hits.map((hit, index) => (
+                    <RecipeCard
+                        key={index}
+                        recipe={hit.recipe}
+                        addFavorite={addFavorite}
+                    />
+                ))}
             </Grid>
-            ))}
-          </Grid>
         )}
-
-
       </Container>
 
     )
-
 }
