@@ -40,8 +40,8 @@ function App() {
         </Toolbar>
       </AppBar>
     <Routes>
-      <Route path="/" element={<Home/>}/>
-      <Route path="/favorites" element={<Favorites/>}/>
+      <Route path="/" element={<Home addFavorite={addFavorite}/>}/>
+      <Route path="/favorites" element={<Favorites favorites={favorites}/>}/>
     </Routes>
     </Container>
   );
