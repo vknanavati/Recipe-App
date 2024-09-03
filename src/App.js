@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { AppBar,Container,Toolbar, Typography, Box} from '@mui/material';
 import {Routes, Route, Link} from 'react-router-dom';
 import {Favorites} from './components/Favorites'
@@ -5,6 +6,13 @@ import {Home} from './components/Home'
 
 
 function App() {
+
+  const [favorites, setFavorites] = useState([]);
+
+  const addFavorite = (recipe) => {
+    setFavorites([...favorites, recipe])
+  }
+
 
   return (
     <Container maxWidth={"false"} disableGutters>
