@@ -1,41 +1,44 @@
-import { Typography } from '@mui/material';
+import {Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import IconButton from '@mui/joy/IconButton';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 
-export function RecipeCard () {
+export function RecipeCard ({recipe, addFavorite}) {
     return (
         <Grid
-        item
-        sm={8}
-        sx={{
-          boxShadow: 6,
-          margin: 4,
-          padding: 2,
-          textAlign: "center",
-          width: "370px",
-          height: "auto"
-        }}
+            item
+            sm={8}
+            sx={{
+            boxShadow: 6,
+            margin: 4,
+            padding: 2,
+            textAlign: "center",
+            width: "370px",
+            height: "auto"
+            }}
       >
-          <IconButton variant="solid">
+          <IconButton
+            variant="solid"
+            onClick={()=>addFavorite(recipe)}
+        >
               <FavoriteBorder/>
           </IconButton>
-          <Typography variant="h6">{hit.recipe.label}</Typography>
-          <img alt="food-photo" src={hit.recipe.image}/>
+          <Typography variant="h6">{recipe.label}</Typography>
+          <img alt="food-photo" src={recipe.image}/>
 
           <Typography variant="subtitle1">Ingredients:</Typography>
-            {hit.recipe.ingredients.map((ingredient, i)=> (
+            {recipe.ingredients.map((ingredient, i)=> (
           <Typography key={i}>{ingredient.food}</Typography>
 
         ))}
 
           <Typography variant="subtitle1">Quantities:</Typography>
-            {hit.recipe.ingredientLines.map((line, i)=>(
+            {recipe.ingredientLines.map((line, i)=>(
           <Typography key={i}>{line}</Typography>
         ))}
 
           <Typography sx={{wordWrap: "break-word", marginTop: 2}}>
-              <a href={hit.recipe.url} target="_blank" rel="noopener noreferrer">
+              <a href={recipe.url} target="_blank" rel="noopener noreferrer">
             Full Recipe
               </a>
           </Typography>
