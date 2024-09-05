@@ -4,18 +4,16 @@ import {Routes, Route, Link} from 'react-router-dom';
 import {Favorites} from './components/Favorites'
 import {Home} from './components/Home'
 
-
 function App() {
 
   const [favorites, setFavorites] = useState([]);
+  const [foodData, setFoodData] = useState("")
 
   const addFavorite = (recipe) => {
     setFavorites([...favorites, recipe])
 
     console.log("favorites:", JSON.stringify(favorites))
-
   }
-
 
   return (
     <Container maxWidth={"false"} disableGutters>
@@ -43,7 +41,7 @@ function App() {
         </Toolbar>
       </AppBar>
     <Routes>
-      <Route path="/" element={<Home addFavorite={addFavorite}/>}/>
+      <Route path="/" element={<Home addFavorite={addFavorite} foodData={foodData} setFoodData={setFoodData}/>}/>
       <Route path="/favorites" element={<Favorites favorites={favorites}/>}/>
     </Routes>
     </Container>
