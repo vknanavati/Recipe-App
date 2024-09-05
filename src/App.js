@@ -37,7 +37,7 @@ function App() {
                   Home
             </Typography>
             <Typography variant="h6" component={Link} to="/favorites" color="inherit" sx={{ textDecoration: 'none' }}>
-                  Favorite Recipes
+                  Favorites
             </Typography>
           </Box>
         </Toolbar>
