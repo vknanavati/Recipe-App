@@ -3,11 +3,10 @@ import {Button,Container,TextField, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { RecipeCard } from './RecipeCard';
 
-export function Home({addFavorite}) {
+export function Home({addFavorite, foodData, setFoodData}) {
     console.log(process.env)
 
     const [foodType, setFoodType] = useState("")
-    const [foodData, setFoodData] = useState("")
 
     const handleSubmit = e => {
       e.preventDefault();
