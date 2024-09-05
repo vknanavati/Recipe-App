@@ -3,6 +3,7 @@ import { AppBar,Container,Toolbar, Typography, Box} from '@mui/material';
 import {Routes, Route, Link} from 'react-router-dom';
 import {Favorites} from './components/Favorites'
 import {Home} from './components/Home'
+import './App.css';
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
 
   return (
     <Container maxWidth={"false"} disableGutters>
-      <AppBar position="static">
+      <AppBar position="static" sx={{backgroundColor: '#3A5B26'}}>
         <Toolbar>
           <Box sx={{
                   display: "flex",
