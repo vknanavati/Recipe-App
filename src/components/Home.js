@@ -48,15 +48,18 @@ export function Home({addFavorite}) {
             </Grid>
           </Grid>
         </form>
-        {foodData && foodData.hits && (
+        {foodData && (
             <Grid container justifyContent={"center"}>
-                {foodData.hits.map((hit, index) => (
+                {foodData.hits.map((hit, index) => {
+                    console.log("HIT from foodData.hits:", hit);
+                    return (
                     <RecipeCard
                         key={index}
                         recipe={hit.recipe}
                         addFavorite={addFavorite}
                     />
-                ))}
+                    )
+                })}
             </Grid>
         )}
       </Container>
