@@ -4,6 +4,8 @@ import IconButton from '@mui/joy/IconButton';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 
 export function RecipeCard ({recipe, addFavorite}) {
+
+    console.log("recipe", recipe)
     return (
         <Grid
             item
