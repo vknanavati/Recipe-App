@@ -11,6 +11,9 @@ function App() {
 
   const addFavorite = (recipe) => {
     setFavorites([...favorites, recipe])
+
+    console.log("favorites:", JSON.stringify(favorites))
+
   }
 
 
