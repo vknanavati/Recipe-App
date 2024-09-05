@@ -11,7 +11,10 @@ function App() {
   const [foodData, setFoodData] = useState("")
 
   const addFavorite = (recipe) => {
-    setFavorites([...favorites, recipe])
+
+    if (!(favorites.filter(item => item.label === recipe.label).length > 0)) {
+      setFavorites([...favorites, recipe])
+    }
 
     console.log("favorites:", JSON.stringify(favorites))
   }
