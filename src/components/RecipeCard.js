@@ -20,10 +20,10 @@ export function RecipeCard ({recipe, addFavorite}) {
             }}
       >
           <IconButton
-            variant="solid"
+            variant="soft"
             onClick={()=>addFavorite(recipe)}
-        >
-              <FavoriteBorder/>
+          >
+            <FavoriteBorder/>
           </IconButton>
           <Typography variant="h6">{recipe.label}</Typography>
           <img alt="food-photo" src={recipe.image}/>
