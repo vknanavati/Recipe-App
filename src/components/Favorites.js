@@ -2,7 +2,7 @@ import Grid from '@mui/material/Grid2';
 import {RecipeCard} from './RecipeCard'
 import {Container,Typography} from '@mui/material';
 
-export function Favorites ({favorites}) {
+export function Favorites ({favorites, addFavorite}) {
     return (
         <Container>
             <Grid container justifyContent={"center"} direction={"column"} alignItems={"center"}>
@@ -18,6 +18,8 @@ export function Favorites ({favorites}) {
                     <Grid>
                         <RecipeCard
                             recipe={recipe}
+                            addFavorite={addFavorite}
+
                         />
                     </Grid>
                 ))}
