@@ -14,6 +14,8 @@ function App() {
 
     if (!(favorites.filter(item => item.label === recipe.label).length > 0)) {
       setFavorites([...favorites, recipe])
+    } else {
+      setFavorites(favorites.filter((item)=> item.label !== recipe.label))
     }
 
     console.log("favorites:", JSON.stringify(favorites))
@@ -46,7 +48,7 @@ function App() {
       </AppBar>
     <Routes>
       <Route path="/" element={<Home addFavorite={addFavorite} foodData={foodData} setFoodData={setFoodData}/>}/>
-      <Route path="/favorites" element={<Favorites favorites={favorites}/>}/>
+      <Route path="/favorites" element={<Favorites favorites={favorites} addFavorite={addFavorite}/>}/>
     </Routes>
     </Container>
   );
