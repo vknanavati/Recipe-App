@@ -1,9 +1,9 @@
-import {Typography } from '@mui/material';
+import {Typography, Button } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import IconButton from '@mui/joy/IconButton';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 
-export function RecipeCard ({recipe, addFavorite}) {
+export function RecipeCard ({recipe, addFavorite, addMakeRecipe}) {
 
     console.log("recipe", recipe)
     return (
@@ -25,6 +25,13 @@ export function RecipeCard ({recipe, addFavorite}) {
           >
             <FavoriteBorder/>
           </IconButton>
+          <Grid>
+            <Button
+              onClick={()=>addMakeRecipe(recipe)}
+            >
+              Make Recipe
+            </Button>
+          </Grid>
           <Typography variant="h6">{recipe.label}</Typography>
           <img alt="food-photo" src={recipe.image}/>
 
