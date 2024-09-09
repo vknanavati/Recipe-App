@@ -56,6 +56,7 @@ a        {foodData && (
                         key={index}
                         recipe={hit.recipe}
                         addFavorite={addFavorite}
+                        addMakeRecipe={addMakeRecipe}
                     />
                     )
                 })}
