@@ -3,11 +3,13 @@ import { AppBar,Container,Toolbar, Typography, Box} from '@mui/material';
 import {Routes, Route, Link} from 'react-router-dom';
 import {Favorites} from './components/Favorites'
 import {Home} from './components/Home'
+import {MakeRecipe} from './components/MakeRecipe'
 import './App.css';
 
 function App() {
 
   const [favorites, setFavorites] = useState([]);
+  const [makeRecipe, setMakeRecipe] = useState([]);
   const [foodData, setFoodData] = useState("")
 
   const addFavorite = (recipe) => {
@@ -17,8 +19,11 @@ function App() {
     } else {
       setFavorites(favorites.filter((item)=> item.label !== recipe.label))
     }
-
     console.log("favorites:", JSON.stringify(favorites))
+  }
+
+  const addMakeRecipe = (recipe) => {
+    setFavorites([...makeRecipe, recipe])
   }
 
   return (
@@ -43,12 +48,28 @@ function App() {
             <Typography variant="h6" component={Link} to="/favorites" color="inherit" sx={{ textDecoration: 'none' }}>
                   Favorites
             </Typography>
+            <Typography variant="h6" component={Link} to="/make" color="inherit" sx={{ textDecoration: 'none' }}>
+                  Make Recipe
+            </Typography>
           </Box>
         </Toolbar>
       </AppBar>
     <Routes>
-      <Route path="/" element={<Home addFavorite={addFavorite} foodData={foodData} setFoodData={setFoodData}/>}/>
+      <Route
+        path="/"
+        element={
+        <Home
+          addFavorite={addFavorite}
+          foodData={foodData}
+          setFoodData={setFoodData}
+          addMakeRecipe={addMakeRecipe}
+          makeRecipe={makeRecipe}
+          setMakeRecipe={setMakeRecipe}
+
+        />
+      }/>
       <Route path="/favorites" element={<Favorites favorites={favorites} addFavorite={addFavorite}/>}/>
+      <Route path="/make" element={<MakeRecipe makeRecipe={makeRecipe}/>}/>
     </Routes>
     </Container>
   );
