@@ -1,6 +1,9 @@
 import Grid from '@mui/material/Grid2';
 import {Typography} from '@mui/material'
-export function MakeRecipeCard({recipe}) {
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+
+
+export function MakeRecipeCard({recipe, addGrocery}) {
     return(
         <Grid
             item
@@ -18,9 +21,18 @@ export function MakeRecipeCard({recipe}) {
             <img alt="food-photo" src={recipe.image}/>
 
             <Typography variant="subtitle1">Ingredients:</Typography>
-            {recipe.ingredients.map((ingredient, i)=>(
-                <Typography key={i}>{ingredient.food}</Typography>
-            ))}
+            {recipe.ingredients.map((ingredient, i)=>{
+                return (
+                <Grid container justifyContent={"center"}>
+                    <Grid>
+                        <Typography key={i}>{ingredient.food}</Typography>
+                    </Grid>
+                    <Grid>
+                        <AddCircleIcon onClick={()=>addGrocery(ingredient.food)}/>
+                    </Grid>
+                </Grid>
+                )
+            })}
 
         </Grid>
     )
