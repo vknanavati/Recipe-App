@@ -10,7 +10,8 @@ function App() {
 
   const [favorites, setFavorites] = useState([]);
   const [makeRecipe, setMakeRecipe] = useState([]);
-  const [foodData, setFoodData] = useState("")
+  const [foodData, setFoodData] = useState("");
+  const [groceryItem, setGroceryItem] = useState([]);
 
   const addFavorite = (recipe) => {
 
@@ -24,6 +25,10 @@ function App() {
 
   const addMakeRecipe = (recipe) => {
     setMakeRecipe([...makeRecipe, recipe])
+  }
+
+  const addGrocery = (ingredient) => {
+    setGroceryItem([...groceryItem, ingredient])
   }
 
   return (
@@ -58,16 +63,26 @@ function App() {
       <Route
         path="/"
         element={
-        <Home
-          addFavorite={addFavorite}
-          foodData={foodData}
-          setFoodData={setFoodData}
-          addMakeRecipe={addMakeRecipe}
-
-        />
-      }/>
+          <Home
+            addFavorite={addFavorite}
+            foodData={foodData}
+            setFoodData={setFoodData}
+            addMakeRecipe={addMakeRecipe}
+          />
+        }
+      />
       <Route path="/favorites" element={<Favorites favorites={favorites} addFavorite={addFavorite}/>}/>
-      <Route path="/make" element={<MakeRecipe makeRecipe={makeRecipe}/>}/>
+      <Route
+        path="/make"
+        element={
+          <MakeRecipe
+            makeRecipe={makeRecipe}
+            addGrocery={addGrocery}
+            groceryItem={groceryItem}
+            addGroceryItem={setGroceryItem}
+          />
+        }
+      />
     </Routes>
     </Container>
   );
