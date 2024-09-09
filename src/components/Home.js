@@ -3,7 +3,7 @@ import {Button,Container,TextField, Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { RecipeCard } from './RecipeCard';
 
-export function Home({addFavorite, foodData, setFoodData}) {
+export function Home({addFavorite, foodData, setFoodData, addMakeRecipe}) {
     console.log(process.env)
 
     const [foodType, setFoodType] = useState("")
