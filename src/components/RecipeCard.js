@@ -18,7 +18,7 @@ export function RecipeCard ({recipe, addFavorite, addMakeRecipe}) {
             width: "370px",
             height: "auto"
             }}
-      >
+        >
           <IconButton
             variant="soft"
             onClick={()=>addFavorite(recipe)}
