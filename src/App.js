@@ -23,7 +23,7 @@ function App() {
   }
 
   const addMakeRecipe = (recipe) => {
-    setFavorites([...makeRecipe, recipe])
+    setMakeRecipe([...makeRecipe, recipe])
   }
 
   return (
@@ -63,8 +63,6 @@ function App() {
           foodData={foodData}
           setFoodData={setFoodData}
           addMakeRecipe={addMakeRecipe}
-          makeRecipe={makeRecipe}
-          setMakeRecipe={setMakeRecipe}
 
         />
       }/>
