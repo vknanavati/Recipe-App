@@ -24,7 +24,7 @@ export function MakeRecipeCard({recipe, addGrocery}) {
             <Typography variant="subtitle1">Ingredients:</Typography>
             {recipe.ingredients.map((ingredient, i)=>{
                 return (
-                <Grid container justifyContent={"center"}>
+                <Grid container justifyContent={"center"} alignItems={"center"}>
                     <Grid>
                         <Typography key={i}>{ingredient.food}</Typography>
                     </Grid>
