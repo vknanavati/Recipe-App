@@ -47,7 +47,7 @@ export function Home({addFavorite, foodData, setFoodData, addMakeRecipe}) {
             </Grid>
           </Grid>
         </form>
-a        {foodData && (
+        {foodData && (
             <Grid container justifyContent={"center"}>
                 {foodData.hits.map((hit, index) => {
                     console.log("HIT from foodData.hits:", hit);
