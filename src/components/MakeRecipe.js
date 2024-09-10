@@ -45,9 +45,14 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}
                             height: "auto"
                         }}
                     >
-                        <Typography>Grocery List</Typography>
+                        <Typography
+                            variant="h5"
+                            sx={{marginBottom: 3}}
+                        >
+                            Grocery List
+                        </Typography>
                         {groceryItem.map((item, i)=>(
-                            <Typography key={i}>{item}</Typography>
+                            <Typography sx={{fontSize: 20}} key={i}>{item}</Typography>
                         ))}
                     </Grid>
                 </Grid>
