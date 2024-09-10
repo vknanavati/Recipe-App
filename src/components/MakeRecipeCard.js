@@ -1,6 +1,7 @@
 import Grid from '@mui/material/Grid2';
 import {Typography} from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import IconButton from '@mui/joy/IconButton';
 
 
 export function MakeRecipeCard({recipe, addGrocery}) {
@@ -27,8 +28,10 @@ export function MakeRecipeCard({recipe, addGrocery}) {
                     <Grid>
                         <Typography key={i}>{ingredient.food}</Typography>
                     </Grid>
-                    <Grid>
-                        <AddCircleIcon onClick={()=>addGrocery(ingredient.food)}/>
+                    <Grid sx={{marginLeft: 2}}>
+                        <IconButton variant="plain">
+                            <AddCircleIcon onClick={()=>addGrocery(ingredient.food)}/>
+                        </IconButton>
                     </Grid>
                 </Grid>
                 )
