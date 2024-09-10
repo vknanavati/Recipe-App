@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AppBar,Container,Toolbar, Typography, Box} from '@mui/material';
 import {Routes, Route, Link} from 'react-router-dom';
 import {Favorites} from './components/Favorites'
@@ -28,8 +28,17 @@ function App() {
   }
 
   const addGrocery = (ingredient) => {
-    setGroceryItem([...groceryItem, ingredient])
+    if (!(groceryItem.filter(item => item === ingredient).length > 0)) {
+      console.log("ingredient: ", ingredient)
+      setGroceryItem([...groceryItem, ingredient])
+    } else {
+      console.log("ingredient already on list")
+    }
   }
+
+  useEffect(() => {
+    console.log("groceryItem updated: ", JSON.stringify(groceryItem));
+  }, [groceryItem]);
 
   return (
     <Container maxWidth={"false"} disableGutters>
