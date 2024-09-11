@@ -59,52 +59,54 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}
                         Make Recipe
                     </Typography>
                 </Grid>
-                <Grid container>
                 {filteredRecipe.map((recipe, index)=>(
-                    <Grid>
-                        <MakeRecipeCard
-                            recipe={recipe}
-                            addGrocery={addGrocery}
-                            setGroceryItem={setGroceryItem}
-                            groceryItem={groceryItem}
-                            key={index}
+                    <Grid container>
+                        <Grid>
+                            <MakeRecipeCard
+                                recipe={recipe}
+                                addGrocery={addGrocery}
+                                setGroceryItem={setGroceryItem}
+                                groceryItem={groceryItem}
+                                key={index}
 
-                        />
-                    {makeRecipe.length > 0 && (
-                        <Grid
-                            item
-                            sm={8}
-                            sx={{
-                                boxShadow: 6,
-                                margin: 4,
-                                padding: 2,
-                                textAlign: "center",
-                                width: "370px",
-                                height: "auto"
-                            }}
-                        >
-                            <Typography
-                                variant="h5"
-                                sx={{marginBottom: 3}}
+                            />
+                        </Grid>
+                        {makeRecipe.length > 0 && (
+                        <Grid>
+                            <Grid
+                                item
+                                sm={8}
+                                sx={{
+                                    boxShadow: 6,
+                                    margin: 4,
+                                    padding: 2,
+                                    textAlign: "center",
+                                    width: "370px",
+                                    height: "auto"
+                                }}
                             >
-                                Grocery List
-                            </Typography>
-                            <ol>
-                            {groceryItem.map((item, i)=>{
-                                return (
-                                <Grid container>
-                                    <Grid>
-                                        <li><Typography sx={{fontSize: 20}} key={i}>{item}</Typography></li>
+                                <Typography
+                                    variant="h5"
+                                    sx={{marginBottom: 3}}
+                                >
+                                    Grocery List
+                                </Typography>
+                                <ol>
+                                {groceryItem.map((item, i)=>{
+                                    return (
+                                    <Grid container>
+                                        <Grid>
+                                            <li><Typography sx={{fontSize: 20}} key={i}>{item}</Typography></li>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                                )
-                            })}
-                            </ol>
+                                    )
+                                })}
+                                </ol>
+                            </Grid>
                         </Grid>
                         )}
                     </Grid>
                 ))}
-                </Grid>
             </Grid>
         </Container>
     )
