@@ -21,7 +21,7 @@ export function Home({addFavorite, foodData, setFoodData, addMakeRecipe}) {
       .catch(error => console.error('Error:', error))
     }
     return (
-        <Container>
+        <Container sx={{paddingTop: '64px'}}>
         <form onSubmit={handleSubmit}>
           <Grid container justifyContent={"center"} direction={"column"} alignItems={"center"}>
             <Typography
