@@ -39,6 +39,9 @@ function App() {
   useEffect(() => {
     console.log("groceryItem updated: ", JSON.stringify(groceryItem));
   }, [groceryItem]);
+  useEffect(() => {
+    console.log("makeRecipe updated: ", JSON.stringify(makeRecipe));
+  }, [makeRecipe]);
 
   return (
     <Container maxWidth={"false"} disableGutters>
