@@ -33,6 +33,7 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}
                     </Grid>
                 ))}
 
+                {makeRecipe.length > 0 && (
                     <Grid
                         item
                         sm={8}
@@ -51,10 +52,19 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}
                         >
                             Grocery List
                         </Typography>
-                        {groceryItem.map((item, i)=>(
-                            <Typography sx={{fontSize: 20}} key={i}>{item}</Typography>
-                        ))}
+                        <ol>
+                        {groceryItem.map((item, i)=>{
+                            return (
+                            <Grid container>
+                                <Grid>
+                                    <li><Typography sx={{fontSize: 20}} key={i}>{item}</Typography></li>
+                                </Grid>
+                            </Grid>
+                            )
+                        })}
+                        </ol>
                     </Grid>
+                    )}
                 </Grid>
             </Grid>
         </Container>
