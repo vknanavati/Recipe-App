@@ -1,8 +1,22 @@
+import { useState, useEffect } from "react";
 import { MakeRecipeCard } from "./MakeRecipeCard";
 import Grid from '@mui/material/Grid2';
 import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemText} from '@mui/material';
 
 export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}) {
+
+    const [filteredRecipe, setFilteredRecipe] = useState([])
+
+    const selectedRecipe = (choice) => {
+      const filtered = makeRecipe.filter(item=>item.label.includes(choice))
+      console.log("choice: ", choice)
+      setFilteredRecipe(filtered)
+      console.log("filtered:", filtered)
+    }
+
+    useEffect(() => {
+        console.log("filteredRecipe updated: ", JSON.stringify(filteredRecipe));
+      }, [filteredRecipe]);
 
     return(
         <Container sx={{paddingTop: '64px'}}>
@@ -22,7 +36,7 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}
                 <List>
                     {makeRecipe.map((title, i)=> (
                         <ListItem>
-                            <ListItemButton>
+                            <ListItemButton onClick={()=>selectedRecipe(title.label)}>
                                 <ListItemText>
                                     {title.label}
                                 </ListItemText>
@@ -46,13 +60,14 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}
                     </Typography>
                 </Grid>
                 <Grid container>
-                {makeRecipe.map((recipe, index)=>(
+                {filteredRecipe.map((recipe, index)=>(
                     <Grid>
                         <MakeRecipeCard
                             recipe={recipe}
                             addGrocery={addGrocery}
                             setGroceryItem={setGroceryItem}
                             groceryItem={groceryItem}
+                            key={index}
 
                         />
                     {makeRecipe.length > 0 && (
