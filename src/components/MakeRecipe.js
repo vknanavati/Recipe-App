@@ -1,11 +1,26 @@
 import { MakeRecipeCard } from "./MakeRecipeCard";
 import Grid from '@mui/material/Grid2';
-import {Container, Typography} from '@mui/material';
-
+import {Container, Typography, Drawer} from '@mui/material';
 
 export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}) {
+
     return(
-        <Container>
+        <Container sx={{paddingTop: '64px'}}>
+            <Drawer
+                variant="permanent"
+                anchor="left"
+                sx={{
+                    '& .MuiDrawer-paper': {
+                        width: 240,
+                        marginTop: '64px',
+                        height: 'calc(100% - 64px)',
+                        }
+                    }}
+            >
+                <Typography>
+                    Recipes
+                </Typography>
+            </Drawer>
             <Grid
                 container
                 justifyContent={"center"}
