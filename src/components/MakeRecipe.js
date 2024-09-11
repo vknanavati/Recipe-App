@@ -1,6 +1,6 @@
 import { MakeRecipeCard } from "./MakeRecipeCard";
 import Grid from '@mui/material/Grid2';
-import {Container, Typography, Drawer} from '@mui/material';
+import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemText} from '@mui/material';
 
 export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}) {
 
@@ -17,9 +17,19 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}
                         }
                     }}
             >
-                <Typography>
-                    Recipes
-                </Typography>
+                <Typography> Recipes </Typography>
+
+                <List>
+                    {makeRecipe.map((title, i)=> (
+                        <ListItem>
+                            <ListItemButton>
+                                <ListItemText>
+                                    {title.label}
+                                </ListItemText>
+                            </ListItemButton>
+                        </ListItem>
+                    ))}
+                </List>
             </Drawer>
             <Grid
                 container
