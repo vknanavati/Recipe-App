@@ -55,41 +55,40 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}
                             groceryItem={groceryItem}
 
                         />
+                    {makeRecipe.length > 0 && (
+                        <Grid
+                            item
+                            sm={8}
+                            sx={{
+                                boxShadow: 6,
+                                margin: 4,
+                                padding: 2,
+                                textAlign: "center",
+                                width: "370px",
+                                height: "auto"
+                            }}
+                        >
+                            <Typography
+                                variant="h5"
+                                sx={{marginBottom: 3}}
+                            >
+                                Grocery List
+                            </Typography>
+                            <ol>
+                            {groceryItem.map((item, i)=>{
+                                return (
+                                <Grid container>
+                                    <Grid>
+                                        <li><Typography sx={{fontSize: 20}} key={i}>{item}</Typography></li>
+                                    </Grid>
+                                </Grid>
+                                )
+                            })}
+                            </ol>
+                        </Grid>
+                        )}
                     </Grid>
                 ))}
-
-                {makeRecipe.length > 0 && (
-                    <Grid
-                        item
-                        sm={8}
-                        sx={{
-                            boxShadow: 6,
-                            margin: 4,
-                            padding: 2,
-                            textAlign: "center",
-                            width: "370px",
-                            height: "auto"
-                        }}
-                    >
-                        <Typography
-                            variant="h5"
-                            sx={{marginBottom: 3}}
-                        >
-                            Grocery List
-                        </Typography>
-                        <ol>
-                        {groceryItem.map((item, i)=>{
-                            return (
-                            <Grid container>
-                                <Grid>
-                                    <li><Typography sx={{fontSize: 20}} key={i}>{item}</Typography></li>
-                                </Grid>
-                            </Grid>
-                            )
-                        })}
-                        </ol>
-                    </Grid>
-                    )}
                 </Grid>
             </Grid>
         </Container>
