@@ -12,6 +12,7 @@ function App() {
   const [makeRecipe, setMakeRecipe] = useState([]);
   const [foodData, setFoodData] = useState("");
   const [groceryItem, setGroceryItem] = useState([]);
+  const [groceryList, setGroceryList] = useState({});
 
   const addFavorite = (recipe) => {
 
@@ -27,7 +28,18 @@ function App() {
     setMakeRecipe([...makeRecipe, recipe])
   }
 
-  const addGrocery = (ingredient) => {
+  const addGrocery = (recipeName, ingredient) => {
+
+    setGroceryList((prevGroceryList)=>{
+      const updatedIngredients = prevGroceryList[recipeName] ? [...prevGroceryList[recipeName], ingredient] : [ingredient];
+      console.log("updatedIngredients", updatedIngredients)
+      console.log("prevGroceryList", prevGroceryList)
+      return {...prevGroceryList, [recipeName]: updatedIngredients}
+    });
+
+    console.log("recipe name: ", recipeName)
+
+
     if (!(groceryItem.filter(item => item === ingredient).length > 0)) {
       console.log("ingredient: ", ingredient)
       setGroceryItem([...groceryItem, ingredient])
@@ -38,7 +50,8 @@ function App() {
 
   useEffect(() => {
     console.log("groceryItem updated: ", JSON.stringify(groceryItem));
-  }, [groceryItem]);
+    console.log("groceryList updated: ", JSON.stringify(groceryList));
+  }, [groceryItem, groceryList]);
   useEffect(() => {
     console.log("makeRecipe updated: ", JSON.stringify(makeRecipe));
   }, [makeRecipe]);
