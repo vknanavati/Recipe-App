@@ -30,7 +30,7 @@ export function MakeRecipeCard({recipe, addGrocery}) {
                     </Grid>
                     <Grid sx={{marginLeft: 2}}>
                         <IconButton variant="plain">
-                            <AddCircleIcon onClick={()=>addGrocery(ingredient.food)}/>
+                            <AddCircleIcon onClick={() => addGrocery(recipe.label, ingredient.food)}/>
                         </IconButton>
                     </Grid>
                 </Grid>
