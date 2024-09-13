@@ -59,6 +59,7 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}
                         Make Recipe
                     </Typography>
                 </Grid>
+                <Grid>
                 {filteredRecipe.map((recipe, index)=>(
                     <Grid container>
                         <Grid>
@@ -70,8 +71,8 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}
                                 key={index}
 
                             />
-                        </Grid>
-                        {makeRecipe.length > 0 && (
+                    </Grid>
+                    {makeRecipe.length > 0 && (
                         <Grid>
                             <Grid
                                 item
@@ -107,6 +108,7 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}
                         )}
                     </Grid>
                 ))}
+                </Grid>
             </Grid>
         </Container>
     )
