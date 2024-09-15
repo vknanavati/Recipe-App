@@ -51,10 +51,9 @@ function App() {
   useEffect(() => {
     console.log("groceryItem updated: ", JSON.stringify(groceryItem));
     console.log("groceryList updated: ", JSON.stringify(groceryList));
-  }, [groceryItem, groceryList]);
-  useEffect(() => {
     console.log("makeRecipe updated: ", JSON.stringify(makeRecipe));
-  }, [makeRecipe]);
+  }, [groceryItem, groceryList, makeRecipe]);
+
 
   return (
     <Container maxWidth={"false"} disableGutters>
@@ -105,6 +104,7 @@ function App() {
             addGrocery={addGrocery}
             groceryItem={groceryItem}
             addGroceryItem={setGroceryItem}
+            groceryList={groceryList}
           />
         }
       />
