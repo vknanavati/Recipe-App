@@ -3,7 +3,7 @@ import { MakeRecipeCard } from "./MakeRecipeCard";
 import Grid from '@mui/material/Grid2';
 import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemText} from '@mui/material';
 
-export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}) {
+export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem, groceryList}) {
 
     const [filteredRecipe, setFilteredRecipe] = useState([])
 
@@ -92,8 +92,9 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}
                                 >
                                     Grocery List
                                 </Typography>
+                                {groceryList[recipe.label] && groceryList[recipe.label].length > 0 && (
                                 <ol>
-                                {groceryItem.map((item, i)=>{
+                                {groceryList[recipe.label].map((item, i)=>{
                                     return (
                                     <Grid container>
                                         <Grid>
@@ -103,6 +104,7 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem}
                                     )
                                 })}
                                 </ol>
+                                )}
                             </Grid>
                         </Grid>
                         )}
