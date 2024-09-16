@@ -3,7 +3,7 @@ import { MakeRecipeCard } from "./MakeRecipeCard";
 import Grid from '@mui/material/Grid2';
 import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemText} from '@mui/material';
 
-export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem, groceryList}) {
+export function MakeRecipe({makeRecipe, addGrocery, groceryList}) {
 
     const [filteredRecipe, setFilteredRecipe] = useState([])
 
@@ -66,8 +66,6 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem,
                             <MakeRecipeCard
                                 recipe={recipe}
                                 addGrocery={addGrocery}
-                                setGroceryItem={setGroceryItem}
-                                groceryItem={groceryItem}
                                 key={index}
 
                             />
@@ -93,17 +91,17 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryItem, setGroceryItem,
                                     Grocery List
                                 </Typography>
                                 {groceryList[recipe.label] && groceryList[recipe.label].length > 0 && (
-                                <ol>
-                                {groceryList[recipe.label].map((item, i)=>{
-                                    return (
-                                    <Grid container>
-                                        <Grid>
-                                            <li><Typography sx={{fontSize: 20}} key={i}>{item}</Typography></li>
-                                        </Grid>
-                                    </Grid>
-                                    )
-                                })}
-                                </ol>
+                                    <ol>
+                                        {groceryList[recipe.label].map((item, i)=>{
+                                            return (
+                                            <Grid container>
+                                                <Grid>
+                                                    <li><Typography sx={{fontSize: 20}} key={i}>{item}</Typography></li>
+                                                </Grid>
+                                            </Grid>
+                                            )
+                                        })}
+                                    </ol>
                                 )}
                             </Grid>
                         </Grid>
