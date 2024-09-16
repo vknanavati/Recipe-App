@@ -11,7 +11,6 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [makeRecipe, setMakeRecipe] = useState([]);
   const [foodData, setFoodData] = useState("");
-  const [groceryItem, setGroceryItem] = useState([]);
   const [groceryList, setGroceryList] = useState({});
 
   const addFavorite = (recipe) => {
@@ -31,28 +30,30 @@ function App() {
   const addGrocery = (recipeName, ingredient) => {
 
     setGroceryList((prevGroceryList)=>{
-      const updatedIngredients = prevGroceryList[recipeName] ? [...prevGroceryList[recipeName], ingredient] : [ingredient];
-      console.log("updatedIngredients", updatedIngredients)
-      console.log("prevGroceryList", prevGroceryList)
-      return {...prevGroceryList, [recipeName]: updatedIngredients}
+
+      const currentIngredients = prevGroceryList[recipeName] || [];
+
+      console.log("currentIngredients: ", currentIngredients)
+      console.log("before adding new ingredient prevGroceryList: ", prevGroceryList)
+      console.log("recipeName: ", recipeName)
+
+      if (!currentIngredients.includes(ingredient)) {
+
+        console.log("added new ingredient: ", ingredient)
+        return { ...prevGroceryList, [recipeName]: [...currentIngredients, ingredient] };
+
+      } else {
+          console.log("ingredient already in list");
+          return prevGroceryList;
+      }
+
     });
-
-    console.log("recipe name: ", recipeName)
-
-
-    if (!(groceryItem.filter(item => item === ingredient).length > 0)) {
-      console.log("ingredient: ", ingredient)
-      setGroceryItem([...groceryItem, ingredient])
-    } else {
-      console.log("ingredient already on list")
-    }
   }
 
   useEffect(() => {
-    console.log("groceryItem updated: ", JSON.stringify(groceryItem));
     console.log("groceryList updated: ", JSON.stringify(groceryList));
     console.log("makeRecipe updated: ", JSON.stringify(makeRecipe));
-  }, [groceryItem, groceryList, makeRecipe]);
+  }, [groceryList, makeRecipe]);
 
 
   return (
@@ -102,8 +103,6 @@ function App() {
           <MakeRecipe
             makeRecipe={makeRecipe}
             addGrocery={addGrocery}
-            groceryItem={groceryItem}
-            addGroceryItem={setGroceryItem}
             groceryList={groceryList}
           />
         }
