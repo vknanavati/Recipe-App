@@ -35,17 +35,6 @@ export function RecipeCard ({recipe, addFavorite, addMakeRecipe}) {
           <Typography variant="h6">{recipe.label}</Typography>
           <img alt="food-photo" src={recipe.image}/>
 
-          <Typography variant="subtitle1">Ingredients:</Typography>
-            {recipe.ingredients.map((ingredient, i)=> (
-          <Typography key={i}>{ingredient.food}</Typography>
-
-        ))}
-
-          <Typography variant="subtitle1">Quantities:</Typography>
-            {recipe.ingredientLines.map((line, i)=>(
-          <Typography key={i}>{line}</Typography>
-        ))}
-
           <Typography sx={{wordWrap: "break-word", marginTop: 2}}>
               <a href={recipe.url} target="_blank" rel="noopener noreferrer">
             Full Recipe
