@@ -1,19 +1,17 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { MakeRecipeCard } from "./MakeRecipeCard";
 import { FirstRecipe } from "./FirstRecipe";
 import Grid from '@mui/material/Grid2';
 import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemText} from '@mui/material';
 
-export function MakeRecipe({makeRecipe, addGrocery, groceryList}) {
-
-    const [filteredRecipe, setFilteredRecipe] = useState([]);
+export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe, setFilteredRecipe}) {
 
     const selectedRecipe = (choice) => {
-      const filtered = makeRecipe.filter(item=>item.label.includes(choice))
-      console.log("choice: ", choice)
-      setFilteredRecipe(filtered)
-      console.log("filtered:", filtered)
-    }
+        const filtered = makeRecipe.filter(item=>item.label.includes(choice))
+        console.log("choice: ", choice)
+        setFilteredRecipe(filtered)
+        console.log("filtered:", filtered)
+      }
 
     useEffect(() => {
         console.log("filteredRecipe updated: ", JSON.stringify(filteredRecipe));
