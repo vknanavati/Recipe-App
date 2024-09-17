@@ -29,22 +29,22 @@ function App() {
 
   const addGrocery = (recipeName, ingredient) => {
 
-    setGroceryList((prevGroceryList)=>{
+    setGroceryList((groceryList)=>{
 
-      const currentIngredients = prevGroceryList[recipeName] || [];
+      const currentIngredients = groceryList[recipeName] || [];
 
       console.log("currentIngredients: ", currentIngredients)
-      console.log("before adding new ingredient prevGroceryList: ", prevGroceryList)
+      console.log("before adding new ingredient groceryList ", groceryList)
       console.log("recipeName: ", recipeName)
 
       if (!currentIngredients.includes(ingredient)) {
 
         console.log("added new ingredient: ", ingredient)
-        return { ...prevGroceryList, [recipeName]: [...currentIngredients, ingredient] };
+        return { ...groceryList, [recipeName]: [...currentIngredients, ingredient] };
 
       } else {
           console.log("ingredient already in list");
-          return prevGroceryList;
+          return groceryList;
       }
 
     });
