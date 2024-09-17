@@ -40,7 +40,7 @@ function App() {
       if (!currentIngredients.includes(ingredient)) {
 
         console.log("added new ingredient: ", ingredient)
-        return { ...groceryList, [recipeName]: [...currentIngredients, ingredient] };
+        return { ...groceryList, [recipeName] : [...currentIngredients, ingredient] };
 
       } else {
           console.log("ingredient already in list");
