@@ -12,6 +12,7 @@ function App() {
   const [makeRecipe, setMakeRecipe] = useState([]);
   const [foodData, setFoodData] = useState("");
   const [groceryList, setGroceryList] = useState({});
+  const [filteredRecipe, setFilteredRecipe] = useState([]);
 
   const addFavorite = (recipe) => {
 
@@ -104,6 +105,8 @@ function App() {
             makeRecipe={makeRecipe}
             addGrocery={addGrocery}
             groceryList={groceryList}
+            filteredRecipe={filteredRecipe}
+            setFilteredRecipe={setFilteredRecipe}
           />
         }
       />
