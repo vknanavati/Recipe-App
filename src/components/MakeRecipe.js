@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { MakeRecipeCard } from "./MakeRecipeCard";
+import { FirstRecipe } from "./FirstRecipe";
 import Grid from '@mui/material/Grid2';
 import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemText} from '@mui/material';
 
 export function MakeRecipe({makeRecipe, addGrocery, groceryList}) {
 
-    const [filteredRecipe, setFilteredRecipe] = useState([])
+    const [filteredRecipe, setFilteredRecipe] = useState([]);
 
     const selectedRecipe = (choice) => {
       const filtered = makeRecipe.filter(item=>item.label.includes(choice))
@@ -16,10 +17,13 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList}) {
 
     useEffect(() => {
         console.log("filteredRecipe updated: ", JSON.stringify(filteredRecipe));
+        console.log("!filteredRecipe.length: ",!filteredRecipe.length);
+        console.log("filteredRecipe.length: ",filteredRecipe.length);
       }, [filteredRecipe]);
 
     return(
         <Container sx={{paddingTop: '64px'}}>
+
             <Drawer
                 variant="permanent"
                 anchor="left"
@@ -45,6 +49,7 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList}) {
                     ))}
                 </List>
             </Drawer>
+
             <Grid
                 container
                 justifyContent={"center"}
@@ -59,6 +64,13 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList}) {
                         Make Recipe
                     </Typography>
                 </Grid>
+                {filteredRecipe.length === 0 && makeRecipe && (
+                    <FirstRecipe
+                        makeRecipe={makeRecipe}
+                        groceryList={groceryList}
+                        addGrocery={addGrocery}
+                    />
+                )}
                 <Grid>
                 {filteredRecipe.map((recipe, index)=>(
                     <Grid container>
