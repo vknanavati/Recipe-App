@@ -49,14 +49,12 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                                         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
                                     }
                                 }}
-
-                            onClick={()=>selectedRecipe(title.label)}>
+                                onClick={()=>selectedRecipe(title.label)}>
                                 <ListItemText>
                                     {title.label}
                                 </ListItemText>
                             </ListItemButton>
                         </ListItem>
-
                     ))}
                 </List>
             </Drawer>
@@ -107,7 +105,8 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                                     height: "auto",
                                     marginLeft: 20,
                                     marginTop: 4,
-                                    marginBottom: 10
+                                    marginBottom: 10,
+                                    borderRadius: 3
                                 }}
                             >
                                 <Typography
@@ -139,10 +138,11 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                                 height: "auto",
                                 marginLeft: 20,
                                 marginTop: 4,
-                                marginBottom: 10
+                                marginBottom: 10,
+                                borderRadius: 3
                             }}
                             >
-                                <Typography variant="h5">Notes</Typography>
+                                <Typography variant="h5" sx={{marginBottom: 2}}>Notes</Typography>
                                 <Textarea placeholder="Recipe notes" />
                             </Grid>
                         </Grid>
