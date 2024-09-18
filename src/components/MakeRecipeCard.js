@@ -15,13 +15,15 @@ export function MakeRecipeCard({recipe, addGrocery}) {
                 padding: 2,
                 textAlign: "center",
                 width: "370px",
-                height: "auto"
+                height: "auto",
+                borderRadius: 3
             }}
         >
-            <Typography variant="h6">{recipe.label}</Typography>
+            <Typography variant="h5" sx={{marginBottom: 2}}>{recipe.label}</Typography>
             <img alt="food-photo" src={recipe.image}/>
-
-            <Typography variant="subtitle1">Ingredients:</Typography>
+            <Grid sx={{marginTop: 2, marginBottom: 2}}>
+                <Typography variant="subtitle" sx={{fontWeight: 700, fontSize: 20}}>Ingredients:</Typography>
+            </Grid>
             {recipe.ingredients.map((ingredient, i)=>{
                 return (
                 <Grid container justifyContent={"center"} alignItems={"center"}>
@@ -36,7 +38,11 @@ export function MakeRecipeCard({recipe, addGrocery}) {
                 </Grid>
                 )
             })}
-
+            <Typography sx={{wordWrap: "break-word", marginTop: 2}}>
+              <a href={recipe.url} target="_blank" rel="noopener noreferrer">
+            Full Recipe
+              </a>
+          </Typography>
         </Grid>
     )
 }
