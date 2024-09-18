@@ -11,12 +11,13 @@ export function RecipeCard ({recipe, addFavorite, addMakeRecipe}) {
             item
             sm={8}
             sx={{
-            boxShadow: 6,
-            margin: 4,
-            padding: 2,
-            textAlign: "center",
-            width: "370px",
-            height: "auto"
+              boxShadow: 6,
+              margin: 4,
+              padding: 2,
+              textAlign: "center",
+              width: "370px",
+              height: "auto",
+              borderRadius: 3
             }}
         >
           <IconButton
