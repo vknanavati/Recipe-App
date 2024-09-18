@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { MakeRecipeCard } from "./MakeRecipeCard";
 import { FirstRecipe } from "./FirstRecipe";
 import Grid from '@mui/material/Grid2';
-import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemText} from '@mui/material';
+import Textarea from '@mui/joy/Textarea';
+import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemText, } from '@mui/material';
 
 export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe, setFilteredRecipe}) {
 
@@ -30,20 +31,32 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                         width: 240,
                         marginTop: '64px',
                         height: 'calc(100% - 64px)',
+                        backgroundColor: '#D0D59D'
                         }
                     }}
             >
-                <Typography> Recipes </Typography>
-
                 <List>
                     {makeRecipe.map((title, i)=> (
                         <ListItem>
-                            <ListItemButton onClick={()=>selectedRecipe(title.label)}>
+                            <ListItemButton
+                                sx={{
+                                    backgroundColor: '#3A5B26',
+                                    borderRadius: 3,
+                                    color: 'white',
+                                    '&:hover': {
+                                        backgroundColor: '#3A5B26',
+                                        border: '1px solid #000',
+                                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                                    }
+                                }}
+
+                            onClick={()=>selectedRecipe(title.label)}>
                                 <ListItemText>
                                     {title.label}
                                 </ListItemText>
                             </ListItemButton>
                         </ListItem>
+
                     ))}
                 </List>
             </Drawer>
@@ -57,7 +70,7 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                 <Grid>
                     <Typography
                         variant="h4"
-                        sx={{marginTop: 5, marginBottom: 2}}
+                        sx={{marginTop: 5, marginBottom: 5}}
                     >
                         Make Recipe
                     </Typography>
@@ -72,7 +85,7 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                 <Grid>
                 {filteredRecipe.map((recipe, index)=>(
                     <Grid container>
-                        <Grid>
+                        <Grid sx={{marginRight: 10}}>
                             <MakeRecipeCard
                                 recipe={recipe}
                                 addGrocery={addGrocery}
@@ -86,12 +99,15 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                                 item
                                 sm={8}
                                 sx={{
+
                                     boxShadow: 6,
-                                    margin: 4,
                                     padding: 2,
                                     textAlign: "center",
                                     width: "370px",
-                                    height: "auto"
+                                    height: "auto",
+                                    marginLeft: 20,
+                                    marginTop: 4,
+                                    marginBottom: 10
                                 }}
                             >
                                 <Typography
@@ -113,6 +129,21 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                                         })}
                                     </ol>
                                 )}
+                            </Grid>
+                            <Grid
+                             sx={{
+                                boxShadow: 6,
+                                padding: 2,
+                                textAlign: "center",
+                                width: "370px",
+                                height: "auto",
+                                marginLeft: 20,
+                                marginTop: 4,
+                                marginBottom: 10
+                            }}
+                            >
+                                <Typography variant="h5">Notes</Typography>
+                                <Textarea placeholder="Recipe notes" />
                             </Grid>
                         </Grid>
                         )}
