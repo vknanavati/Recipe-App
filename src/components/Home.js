@@ -40,7 +40,7 @@ export function Home({addFavorite, foodData, setFoodData, addMakeRecipe}) {
               <Button
                 type="submit"
                 variant="contained"
-                sx={{marginTop: 3}}
+                sx={{marginTop: 3, backgroundColor: '#3A5B26'}}
               >
                 Submit
               </Button>
