@@ -14,11 +14,16 @@ function App() {
   const [groceryList, setGroceryList] = useState({});
   const [filteredRecipe, setFilteredRecipe] = useState([]);
 
-  const addFavorite = (recipe) => {
-
+    //add and remove favorite recipe card
+    const addFavorite = (recipe) => {
+    //adds recipe only if it is not already in favorites list
+    //if length of filtered array > 0 then it will not add the recipe
     if (!(favorites.filter(item => item.label === recipe.label).length > 0)) {
       setFavorites([...favorites, recipe])
     } else {
+      //keeps item in array if label of the item doesn't match the label of the recipe being passed
+      //so if 'heart button' is clicked again on recipe card it will remove that recipe because it already exists in favorites
+      //this happens because the condition the array is to return array that doesn't match recipe being passed
       setFavorites(favorites.filter((item)=> item.label !== recipe.label))
     }
     console.log("favorites:", JSON.stringify(favorites))
@@ -32,6 +37,8 @@ function App() {
 
     setGroceryList((groceryList)=>{
 
+      //sets the value of groceryList[recipeName] either to existing ingredients or to empty array
+      //if not already in object
       const currentIngredients = groceryList[recipeName] || [];
 
       console.log("currentIngredients: ", currentIngredients)
@@ -77,7 +84,7 @@ function App() {
                   Home
             </Typography>
             <Typography variant="h6" component={Link} to="/favorites" color="inherit" sx={{ textDecoration: 'none' }}>
-                  Favorites
+                  Favorites ({favorites.length})
             </Typography>
             <Typography variant="h6" component={Link} to="/make" color="inherit" sx={{ textDecoration: 'none' }}>
                   Make Recipe
