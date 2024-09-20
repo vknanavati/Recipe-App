@@ -13,13 +13,18 @@ function App() {
   const [foodData, setFoodData] = useState("");
   const [groceryList, setGroceryList] = useState({});
   const [filteredRecipe, setFilteredRecipe] = useState([]);
+  const [alert, setAlert] = useState(false)
 
     //add and remove favorite recipe card
     const addFavorite = (recipe) => {
     //adds recipe only if it is not already in favorites list
     //if length of filtered array > 0 then it will not add the recipe
     if (!(favorites.filter(item => item.label === recipe.label).length > 0)) {
-      setFavorites([...favorites, recipe])
+      setFavorites([...favorites, recipe]);
+      setAlert(true);
+      setTimeout(() => {
+        setAlert(false);
+      }, 3000);
     } else {
       //keeps item in array if label of the item doesn't match the label of the recipe being passed
       //so if 'heart button' is clicked again on recipe card it will remove that recipe because it already exists in favorites
@@ -69,17 +74,17 @@ function App() {
       <AppBar position="fixed" sx={{backgroundColor: '#3A5B26'}}>
         <Toolbar>
           <Box sx={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  textAlign: "center",
-                  gap:2,
-                  ml: "auto",
-                  fontSize: 20,
-                  fontWeight: 500,
-                  whiteSpace: "nowrap",
-                  overflow: "auto",
-                  flexShrink: 1
-                }}>
+            display: "flex",
+            flexWrap: "wrap",
+            textAlign: "center",
+            gap:2,
+            ml: "auto",
+            fontSize: 20,
+            fontWeight: 500,
+            whiteSpace: "nowrap",
+            overflow: "auto",
+            flexShrink: 1
+          }}>
             <Typography variant="h6" component={Link} to="/" color="inherit" sx={{ textDecoration: 'none' }}>
                   Home
             </Typography>
@@ -97,13 +102,16 @@ function App() {
         path="/"
         element={
           <Home
-            addFavorite={addFavorite}
-            foodData={foodData}
-            setFoodData={setFoodData}
-            addMakeRecipe={addMakeRecipe}
+          addFavorite={addFavorite}
+          foodData={foodData}
+          setFoodData={setFoodData}
+          addMakeRecipe={addMakeRecipe}
+          favorites={favorites}
+          alert={alert}
+          setAlert={setAlert}
           />
         }
-      />
+        />
       <Route path="/favorites" element={<Favorites favorites={favorites} addFavorite={addFavorite}/>}/>
       <Route
         path="/make"
