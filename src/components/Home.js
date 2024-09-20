@@ -1,9 +1,9 @@
 import {useState} from 'react'
-import {Button,Container,TextField, Typography} from '@mui/material';
+import {Button,Container,TextField, Typography, Alert} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { RecipeCard } from './RecipeCard';
 
-export function Home({addFavorite, foodData, setFoodData, addMakeRecipe}) {
+export function Home({addFavorite, foodData, setFoodData, addMakeRecipe, alert, setAlert}) {
     console.log(process.env)
 
     const [foodType, setFoodType] = useState("")
@@ -46,6 +46,22 @@ export function Home({addFavorite, foodData, setFoodData, addMakeRecipe}) {
               </Button>
             </Grid>
           </Grid>
+          {alert && (
+            <Alert
+              severity="success"
+              onClose={() => setAlert(false)}
+              sx={{
+                position: "fixed",
+                top: "30px",// 20px from the top of the screen
+                left: "50%", //left edge of alert at half the viewport width
+                transform: "translateX(-50%)", // moves alert to the left at half the width of the alert box
+                width: "auto", // adjust width based on content
+                zIndex: 9999 // alert appears above other content
+              }}
+            >
+              Recipe added to Favorites!
+            </Alert>
+          )}
         </form>
         {foodData && (
             <Grid container justifyContent={"center"}>
