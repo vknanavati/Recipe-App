@@ -13,7 +13,9 @@ function App() {
   const [foodData, setFoodData] = useState("");
   const [groceryList, setGroceryList] = useState({});
   const [filteredRecipe, setFilteredRecipe] = useState([]);
-  const [alert, setAlert] = useState(false)
+  const [alertFavorite, setAlertFavorite] = useState(false);
+  const [alertRemove, setAlertRemove] = useState(false);
+
 
     //add and remove favorite recipe card
     const addFavorite = (recipe) => {
@@ -21,15 +23,19 @@ function App() {
     //if length of filtered array > 0 then it will not add the recipe
     if (!(favorites.filter(item => item.label === recipe.label).length > 0)) {
       setFavorites([...favorites, recipe]);
-      setAlert(true);
+      setAlertFavorite(true);
       setTimeout(() => {
-        setAlert(false);
-      }, 3000);
+        setAlertFavorite(false)
+        }, 3000);
     } else {
       //keeps item in array if label of the item doesn't match the label of the recipe being passed
       //so if 'heart button' is clicked again on recipe card it will remove that recipe because it already exists in favorites
       //this happens because the condition the array is to return array that doesn't match recipe being passed
-      setFavorites(favorites.filter((item)=> item.label !== recipe.label))
+      setFavorites(favorites.filter((item)=> item.label !== recipe.label));
+      setAlertRemove(true);
+      setTimeout(()=>{
+        setAlertRemove(false)
+      }, 3000);
     }
     console.log("favorites:", JSON.stringify(favorites))
   }
@@ -107,8 +113,10 @@ function App() {
           setFoodData={setFoodData}
           addMakeRecipe={addMakeRecipe}
           favorites={favorites}
-          alert={alert}
-          setAlert={setAlert}
+          alertFavorite={alertFavorite}
+          setAlertFavorite={setAlertFavorite}
+          alertRemove={alertRemove}
+          setAlertRemove={setAlertRemove}
           />
         }
         />
