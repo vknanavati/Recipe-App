@@ -106,8 +106,6 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                                             </ol>
                                         )}
                                     </Grid>
-
-                                    {/* Notes section */}
                                     <Grid
                                         sx={{
                                             boxShadow: 6,
