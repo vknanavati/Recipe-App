@@ -21,6 +21,7 @@ function App() {
     const addFavorite = (recipe) => {
     //adds recipe only if it is not already in favorites list
     //if length of filtered array > 0 then it will not add the recipe
+    //checking if recipe exists in favorites array
     if (!(favorites.filter(item => item.label === recipe.label).length > 0)) {
       setFavorites([...favorites, recipe]);
       setAlertFavorite(true);
@@ -31,6 +32,7 @@ function App() {
       //keeps item in array if label of the item doesn't match the label of the recipe being passed
       //so if 'heart button' is clicked again on recipe card it will remove that recipe because it already exists in favorites
       //this happens because the condition the array is to return array that doesn't match recipe being passed
+      //so a new array is created excluding matching recipe label
       setFavorites(favorites.filter((item)=> item.label !== recipe.label));
       setAlertRemove(true);
       setTimeout(()=>{
@@ -48,8 +50,7 @@ function App() {
 
     setGroceryList((groceryList)=>{
 
-      //sets the value of groceryList[recipeName] either to existing ingredients or to empty array
-      //if not already in object
+      //sets current ingredients to groceryList[recipeName] or to empty array if groceryList[recipeName] does not exists
       const currentIngredients = groceryList[recipeName] || [];
 
       console.log("currentIngredients: ", currentIngredients)
