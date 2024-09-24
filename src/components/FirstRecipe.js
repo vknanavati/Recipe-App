@@ -1,10 +1,12 @@
-
 import {Typography} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { MakeRecipeCard } from "./MakeRecipeCard";
 
 export function FirstRecipe ({makeRecipe, groceryList, addGrocery}) {
 
+    if (!makeRecipe || makeRecipe.length === 0) {
+        return null
+    }
     const firstRecipe = makeRecipe[0];
 
     return(
