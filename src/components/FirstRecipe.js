@@ -1,4 +1,5 @@
 import {Typography} from '@mui/material';
+import Textarea from '@mui/joy/Textarea';
 import Grid from '@mui/material/Grid2';
 import { MakeRecipeCard } from "./MakeRecipeCard";
 
@@ -25,11 +26,14 @@ export function FirstRecipe ({makeRecipe, groceryList, addGrocery}) {
                         sm={8}
                         sx={{
                             boxShadow: 6,
-                            margin: 4,
                             padding: 2,
                             textAlign: "center",
                             width: "370px",
-                            height: "auto"
+                            height: "auto",
+                            marginLeft: 20,
+                            marginTop: 4,
+                            marginBottom: 10,
+                            borderRadius: 3
                         }}
                     >
                         <Typography
@@ -51,6 +55,22 @@ export function FirstRecipe ({makeRecipe, groceryList, addGrocery}) {
                                 })}
                             </ol>
                         )}
+                    </Grid>
+                    <Grid
+                        sx={{
+                            boxShadow: 6,
+                            padding: 2,
+                            textAlign: "center",
+                            width: "370px",
+                            height: "auto",
+                            marginLeft: 20,
+                            marginTop: 4,
+                            marginBottom: 10,
+                            borderRadius: 3
+                        }}
+                    >
+                        <Typography variant="h5" sx={{ marginBottom: 2 }}>Notes</Typography>
+                        <Textarea placeholder="Recipe notes" />
                     </Grid>
                 </Grid>
                 )}
