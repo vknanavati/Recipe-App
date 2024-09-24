@@ -8,21 +8,18 @@ import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemT
 export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe, setFilteredRecipe}) {
 
     const selectedRecipe = (choice) => {
-        const filtered = makeRecipe.filter(item=>item.label.includes(choice))
-        console.log("choice: ", choice)
-        setFilteredRecipe(filtered)
-        console.log("filtered:", filtered)
-      }
+        const filtered = makeRecipe.filter(item => item.label.includes(choice));
+        console.log("choice: ", choice);
+        setFilteredRecipe(filtered);
+        console.log("filtered:", filtered);
+    }
 
     useEffect(() => {
         console.log("filteredRecipe updated: ", JSON.stringify(filteredRecipe));
-        console.log("!filteredRecipe.length: ",!filteredRecipe.length);
-        console.log("filteredRecipe.length: ",filteredRecipe.length);
-      }, [filteredRecipe]);
+    }, [filteredRecipe]);
 
-    return(
-        <Container sx={{paddingTop: '64px'}}>
-
+    return (
+        <Container sx={{ paddingTop: '64px' }}>
             <Drawer
                 variant="permanent"
                 anchor="left"
@@ -32,12 +29,12 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                         marginTop: '64px',
                         height: 'calc(100% - 64px)',
                         backgroundColor: '#D0D59D'
-                        }
-                    }}
+                    }
+                }}
             >
                 <List>
-                    {makeRecipe.map((title, i)=> (
-                        <ListItem>
+                    {makeRecipe.map((title, i) => (
+                        <ListItem key={i}>
                             <ListItemButton
                                 sx={{
                                     backgroundColor: '#3A5B26',
@@ -49,7 +46,7 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                                         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
                                     }
                                 }}
-                                onClick={()=>selectedRecipe(title.label)}>
+                                onClick={() => selectedRecipe(title.label)}>
                                 <ListItemText>
                                     {title.label}
                                 </ListItemText>
@@ -59,17 +56,9 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                 </List>
             </Drawer>
 
-            <Grid
-                container
-                justifyContent={"center"}
-                direction={"column"}
-                alignItems={"center"}
-            >
+            <Grid container justifyContent={"center"} direction={"column"} alignItems={"center"}>
                 <Grid>
-                    <Typography
-                        variant="h4"
-                        sx={{marginTop: 5, marginBottom: 5}}
-                    >
+                    <Typography variant="h4" sx={{ marginTop: 5, marginBottom: 5 }}>
                         Make Recipe
                     </Typography>
                 </Grid>
@@ -81,76 +70,66 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                     />
                 )}
                 <Grid>
-                {filteredRecipe.map((recipe, index)=>(
-                    <Grid container>
-                        <Grid sx={{marginRight: 10}}>
-                            <MakeRecipeCard
-                                recipe={recipe}
-                                addGrocery={addGrocery}
-                                key={index}
-
-                            />
-                    </Grid>
-                    {makeRecipe.length > 0 && (
-                        <Grid>
-                            <Grid
-                                item
-                                sm={8}
-                                sx={{
-
-                                    boxShadow: 6,
-                                    padding: 2,
-                                    textAlign: "center",
-                                    width: "370px",
-                                    height: "auto",
-                                    marginLeft: 20,
-                                    marginTop: 4,
-                                    marginBottom: 10,
-                                    borderRadius: 3
-                                }}
-                            >
-                                <Typography
-                                    variant="h5"
-                                    sx={{marginBottom: 3}}
-                                >
-                                    Grocery List
-                                </Typography>
-                                {groceryList[recipe.label] && groceryList[recipe.label].length > 0 && (
-                                    <ol>
-                                        {groceryList[recipe.label].map((item, i)=>{
-                                            return (
-                                            <Grid container>
-                                                <Grid>
-                                                    <li><Typography sx={{fontSize: 20}} key={i}>{item}</Typography></li>
-                                                </Grid>
-                                            </Grid>
-                                            )
-                                        })}
-                                    </ol>
-                                )}
+                    {filteredRecipe.map((recipe, index) => (
+                        <Grid container key={index}>
+                            <Grid sx={{ marginRight: 10 }}>
+                                <MakeRecipeCard
+                                    recipe={recipe}
+                                    addGrocery={addGrocery}
+                                />
                             </Grid>
-                            <Grid
-                             sx={{
-                                boxShadow: 6,
-                                padding: 2,
-                                textAlign: "center",
-                                width: "370px",
-                                height: "auto",
-                                marginLeft: 20,
-                                marginTop: 4,
-                                marginBottom: 10,
-                                borderRadius: 3
-                            }}
-                            >
-                                <Typography variant="h5" sx={{marginBottom: 2}}>Notes</Typography>
-                                <Textarea placeholder="Recipe notes" />
-                            </Grid>
+                            {makeRecipe.length > 0 && (
+                                <Grid>
+                                    <Grid item sm={8} sx={{
+                                        boxShadow: 6,
+                                        padding: 2,
+                                        textAlign: "center",
+                                        width: "370px",
+                                        height: "auto",
+                                        marginLeft: 20,
+                                        marginTop: 4,
+                                        marginBottom: 10,
+                                        borderRadius: 3
+                                    }}>
+                                        <Typography variant="h5" sx={{ marginBottom: 3 }}>
+                                            Grocery List
+                                        </Typography>
+                                        {groceryList[recipe.label] && groceryList[recipe.label].length > 0 && (
+                                            <ol>
+                                                {groceryList[recipe.label].map((item, i) => (
+                                                    <Grid container key={i}>
+                                                        <Grid>
+                                                            <li><Typography sx={{ fontSize: 20 }}>{item}</Typography></li>
+                                                        </Grid>
+                                                    </Grid>
+                                                ))}
+                                            </ol>
+                                        )}
+                                    </Grid>
+
+                                    {/* Notes section */}
+                                    <Grid
+                                        sx={{
+                                            boxShadow: 6,
+                                            padding: 2,
+                                            textAlign: "center",
+                                            width: "370px",
+                                            height: "auto",
+                                            marginLeft: 20,
+                                            marginTop: 4,
+                                            marginBottom: 10,
+                                            borderRadius: 3
+                                        }}
+                                    >
+                                        <Typography variant="h5" sx={{ marginBottom: 2 }}>Notes</Typography>
+                                        <Textarea placeholder="Recipe notes" />
+                                    </Grid>
+                                </Grid>
+                            )}
                         </Grid>
-                        )}
-                    </Grid>
-                ))}
+                    ))}
                 </Grid>
             </Grid>
         </Container>
-    )
+    );
 }
