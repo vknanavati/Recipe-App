@@ -62,6 +62,7 @@ function App() {
       if (!currentIngredients.includes(ingredient)) {
 
         console.log("added new ingredient: ", ingredient)
+
         return { ...groceryList, [recipeName] : [...currentIngredients, ingredient] };
 
       } else {
@@ -111,15 +112,15 @@ function App() {
         path="/"
         element={
           <Home
-          addFavorite={addFavorite}
-          foodData={foodData}
-          setFoodData={setFoodData}
-          addMakeRecipe={addMakeRecipe}
-          favorites={favorites}
-          alertFavorite={alertFavorite}
-          setAlertFavorite={setAlertFavorite}
-          alertRemove={alertRemove}
-          setAlertRemove={setAlertRemove}
+            addFavorite={addFavorite}
+            foodData={foodData}
+            setFoodData={setFoodData}
+            addMakeRecipe={addMakeRecipe}
+            favorites={favorites}
+            alertFavorite={alertFavorite}
+            setAlertFavorite={setAlertFavorite}
+            alertRemove={alertRemove}
+            setAlertRemove={setAlertRemove}
           />
         }
         />
