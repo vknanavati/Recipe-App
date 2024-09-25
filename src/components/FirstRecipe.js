@@ -1,9 +1,9 @@
-import {Typography} from '@mui/material';
+import {Typography, Button} from '@mui/material';
 import Textarea from '@mui/joy/Textarea';
 import Grid from '@mui/material/Grid2';
 import { MakeRecipeCard } from "./MakeRecipeCard";
 
-export function FirstRecipe ({makeRecipe, groceryList, addGrocery}) {
+export function FirstRecipe ({makeRecipe, groceryList, addGrocery, notes, notesList, handleSubmit, handleNoteChange}) {
 
     if (!makeRecipe || makeRecipe.length === 0) {
         return null
@@ -55,23 +55,39 @@ export function FirstRecipe ({makeRecipe, groceryList, addGrocery}) {
                                 })}
                             </ol>
                         )}
+
+                        <ul>
+                            {notesList.map((notesObject, i) => (
+                                <Grid container key={i}>
+                                    <li><Typography sx={{ fontSize: 20 }}>{notesObject.value}</Typography></li>
+                                </Grid>
+                            ))}
+                        </ul>
                     </Grid>
-                    <Grid
-                        sx={{
-                            boxShadow: 6,
-                            padding: 2,
-                            textAlign: "center",
-                            width: "370px",
-                            height: "auto",
-                            marginLeft: 20,
-                            marginTop: 4,
-                            marginBottom: 10,
-                            borderRadius: 3
-                        }}
-                    >
-                        <Typography variant="h5" sx={{ marginBottom: 2 }}>Notes</Typography>
-                        <Textarea placeholder="Recipe notes" />
-                    </Grid>
+                    <form onSubmit={handleSubmit}>
+                        <Grid
+                            sx={{
+                                boxShadow: 6,
+                                padding: 2,
+                                textAlign: "center",
+                                width: "370px",
+                                height: "auto",
+                                marginLeft: 20,
+                                marginTop: 4,
+                                marginBottom: 10,
+                                borderRadius: 3
+                            }}
+                        >
+                            <Typography variant="h5" sx={{ marginBottom: 2 }}>Notes</Typography>
+                            <Textarea
+                                type={"text"}
+                                value={notes}
+                                onChange={(e)=>handleNoteChange(e)}
+                                placeholder="Recipe notes"
+                            />
+                            <Button type="submit">Save</Button>
+                        </Grid>
+                    </form>
                 </Grid>
                 )}
         </Grid>
