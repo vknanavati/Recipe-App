@@ -15,6 +15,8 @@ function App() {
   const [filteredRecipe, setFilteredRecipe] = useState([]);
   const [alertFavorite, setAlertFavorite] = useState(false);
   const [alertRemove, setAlertRemove] = useState(false);
+  const [notes, setNotes] = useState("");
+  const [notesList, setNotesList] = useState([]);
 
 
     //add and remove favorite recipe card
@@ -131,6 +133,10 @@ function App() {
             groceryList={groceryList}
             filteredRecipe={filteredRecipe}
             setFilteredRecipe={setFilteredRecipe}
+            setNotes={setNotes}
+            notes={notes}
+            notesList={notesList}
+            setNotesList={setNotesList}
           />
         }
       />
