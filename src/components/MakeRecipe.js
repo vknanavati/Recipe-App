@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useEffect } from "react";
 import { MakeRecipeCard } from "./MakeRecipeCard";
 import { FirstRecipe } from "./FirstRecipe";
@@ -6,11 +5,7 @@ import Grid from '@mui/material/Grid2';
 import Textarea from '@mui/joy/Textarea';
 import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemText, Button } from '@mui/material';
 
-export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe, setFilteredRecipe}) {
-
-    const [notes, setNotes] = useState("");
-    const [notesList, setNotesList] = useState([]);
-
+export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe, setFilteredRecipe, notes, setNotesList, setNotes, notesList}) {
 
     const selectedRecipe = (choice) => {
         const filtered = makeRecipe.filter(item => item.label.includes(choice));
@@ -93,6 +88,10 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                         makeRecipe={makeRecipe}
                         groceryList={groceryList}
                         addGrocery={addGrocery}
+                        notes={notes}
+                        notesList={notesList}
+                        handleSubmit={handleSubmit}
+                        handleNoteChange={handleNoteChange}
                     />
                 )}
                 <Grid>
