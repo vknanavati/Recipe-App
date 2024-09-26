@@ -1,17 +1,13 @@
-import {useState} from 'react'
-import {Button,Container,TextField, Typography, Alert, AlertTitle} from '@mui/material';
+import {Button,Container, Typography, Alert, AlertTitle} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { RecipeCard } from './RecipeCard';
 
-export function Home({addFavorite, foodData, setFoodData, addMakeRecipe, alertFavorite, setAlertFavorite, alertRemove, setAlertRemove}) {
+export function Home({addFavorite, foodData, setFoodData, addMakeRecipe, alertFavorite, setAlertFavorite, alertRemove}) {
     console.log(process.env)
 
-    const [foodType, setFoodType] = useState("")
-
-    const handleSubmit = e => {
-      e.preventDefault();
-      console.log("Searching city: ", foodType, process.env.REACT_APP_API_KEY, process.env.REACT_APP_ID)
-      fetch(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${process.env.REACT_APP_ID}&app_key=${process.env.REACT_APP_API_KEY}&cuisineType=${foodType}`, {
+    const handleClick = (cusineType) => {
+      console.log("Searching city: ", cusineType, process.env.REACT_APP_API_KEY, process.env.REACT_APP_ID)
+      fetch(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${process.env.REACT_APP_ID}&app_key=${process.env.REACT_APP_API_KEY}&cuisineType=${cusineType}`, {
       })
       .then(response => response.json())
       .then(data =>{
@@ -20,32 +16,44 @@ export function Home({addFavorite, foodData, setFoodData, addMakeRecipe, alertFa
       })
       .catch(error => console.error('Error:', error))
     }
+
     return (
         <Container sx={{paddingTop: '64px'}}>
-        <form onSubmit={handleSubmit}>
+
           <Grid container justifyContent={"center"} direction={"column"} alignItems={"center"}>
+
             <Typography
               variant="h4"
               sx={{marginTop: 5, marginBottom: 2}}
             >
               Recipe Search
             </Typography>
+
             <Grid>
-              <TextField
-                onChange={e=>setFoodType(e.target.value)}
-              >
-              </TextField>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("american")}>American</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("british")}>British</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("caribbean")}>Caribbean</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("chinese")}>Chinese</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("eastern europe")}>Eastern Europe</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("french")}>French</Button>
             </Grid>
             <Grid>
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{marginTop: 3, backgroundColor: '#3A5B26'}}
-              >
-                Submit
-              </Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("greek")}>Greek</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("indian")}>Indian</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("italian")}>Italian</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("japanese")}>Japanese</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("korean")}>Korean</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("mediterranean")}>Mediterranean</Button>
             </Grid>
+            <Grid>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("mexican")}>Mexican</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("middle eastern")}>Middle Eastern</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("nordic")}>Nordic</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("south american")}>South American</Button>
+            </Grid>
+
           </Grid>
+
           {alertFavorite && (
             <Alert
               severity="success"
@@ -79,9 +87,8 @@ export function Home({addFavorite, foodData, setFoodData, addMakeRecipe, alertFa
               Removed from Favorites
             </Alert>
           )}
-        </form>
         {foodData && (
-            <Grid container justifyContent={"center"}>
+            <Grid container justifyContent={"center"} sx={{marginTop: 5}}>
                 {foodData.hits.map((hit, index) => {
                     console.log("HIT from foodData.hits:", hit);
                     return (
