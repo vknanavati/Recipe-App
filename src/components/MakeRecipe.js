@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid2';
 import Textarea from '@mui/joy/Textarea';
 import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemText, Button } from '@mui/material';
 
-export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe, setFilteredRecipe, notes, setNotesList, setNotes, notesList}) {
+export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe, setFilteredRecipe, notes, setNotesList, setNotes, notesList, isIngredient}) {
 
     const selectedRecipe = (choice) => {
         const filtered = makeRecipe.filter(item => item.label.includes(choice));
@@ -101,6 +101,7 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                                 <MakeRecipeCard
                                     recipe={recipe}
                                     addGrocery={addGrocery}
+                                    groceryList={groceryList}
                                 />
                             </Grid>
                             {makeRecipe.length > 0 && (
