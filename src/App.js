@@ -98,13 +98,13 @@ function App() {
             flexShrink: 1
           }}>
             <Typography variant="h6" component={Link} to="/" color="inherit" sx={{ textDecoration: 'none' }}>
-                  Home
+              Home
             </Typography>
             <Typography variant="h6" component={Link} to="/favorites" color="inherit" sx={{ textDecoration: 'none' }}>
-                  Favorites ({favorites.length})
+              Favorites ({favorites.length})
             </Typography>
             <Typography variant="h6" component={Link} to="/make" color="inherit" sx={{ textDecoration: 'none' }}>
-                  Make Recipe
+              Recipes
             </Typography>
           </Box>
         </Toolbar>
