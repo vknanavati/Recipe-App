@@ -33,9 +33,13 @@ export function MakeRecipeCard({recipe, addGrocery, groceryList}) {
                     </Grid>
                     <Grid sx={{marginLeft: 2}}>
                         {groceryList[recipe.label] && groceryList[recipe.label].includes(ingredient.food) ? (
-                            (<RemoveCircleIcon/>) ) : ( <IconButton variant="plain">
-                            <AddCircleIcon onClick={() => addGrocery(recipe.label, ingredient.food)}/>
-                        </IconButton>
+                            <IconButton variant="plain">
+                                <RemoveCircleIcon onClick={() => addGrocery(recipe.label, ingredient.food)}/>
+                            </IconButton>
+                        ) : (
+                            <IconButton variant="plain">
+                                <AddCircleIcon onClick={() => addGrocery(recipe.label, ingredient.food)}/>
+                            </IconButton>
                         )}
                     </Grid>
                 </Grid>
