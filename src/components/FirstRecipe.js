@@ -17,7 +17,8 @@ export function FirstRecipe ({makeRecipe, groceryList, addGrocery, notes, notesL
                     recipe={firstRecipe}
                     addGrocery={addGrocery}
                     key={firstRecipe.label}
-            />
+                    groceryList={groceryList}
+                />
             </Grid>
             {makeRecipe.length > 0 && (
                 <Grid>
