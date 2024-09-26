@@ -23,33 +23,33 @@ export function Home({addFavorite, foodData, setFoodData, addMakeRecipe, alertFa
           <Grid container justifyContent={"center"} direction={"column"} alignItems={"center"}>
 
             <Typography
-              variant="h4"
+              variant="h3"
               sx={{marginTop: 5, marginBottom: 2}}
             >
               Recipe Search
             </Typography>
 
             <Grid>
-              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("american")}>American</Button>
-              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("british")}>British</Button>
-              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("caribbean")}>Caribbean</Button>
-              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("chinese")}>Chinese</Button>
-              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("eastern europe")}>Eastern Europe</Button>
-              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("french")}>French</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("american")}>American</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("british")}>British</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("caribbean")}>Caribbean</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("chinese")}>Chinese</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("eastern europe")}>Eastern Europe</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("french")}>French</Button>
             </Grid>
             <Grid>
-              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("greek")}>Greek</Button>
-              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("indian")}>Indian</Button>
-              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("italian")}>Italian</Button>
-              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("japanese")}>Japanese</Button>
-              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("korean")}>Korean</Button>
-              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("mediterranean")}>Mediterranean</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("greek")}>Greek</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("indian")}>Indian</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("italian")}>Italian</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("japanese")}>Japanese</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("korean")}>Korean</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("mediterranean")}>Mediterranean</Button>
             </Grid>
             <Grid>
-              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("mexican")}>Mexican</Button>
-              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("middle eastern")}>Middle Eastern</Button>
-              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("nordic")}>Nordic</Button>
-              <Button sx={{margin: 3, backgroundColor: '#3A5B26'}} variant="contained" onClick={()=>handleClick("south american")}>South American</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("mexican")}>Mexican</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("middle eastern")}>Middle Eastern</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("nordic")}>Nordic</Button>
+              <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("south american")}>South American</Button>
             </Grid>
 
           </Grid>
