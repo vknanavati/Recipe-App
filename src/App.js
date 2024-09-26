@@ -55,9 +55,9 @@ function App() {
       //sets current ingredients to groceryList[recipeName] or to empty array if groceryList[recipeName] does not exists
       const currentIngredients = groceryList[recipeName] || [];
 
-      console.log("currentIngredients: ", currentIngredients)
-      console.log("before adding new ingredient groceryList ", groceryList)
-      console.log("recipeName: ", recipeName)
+      console.log("currentIngredients: ", currentIngredients);
+      console.log("before adding new ingredient groceryList ", groceryList);
+      console.log("recipeName: ", recipeName);
 
       if (!currentIngredients.includes(ingredient)) {
 
@@ -67,9 +67,11 @@ function App() {
 
       } else {
           console.log("ingredient already in list");
-          return groceryList;
-      }
 
+          const updatedIngredients = currentIngredients.filter((item) => item !== ingredient);
+
+          return {...groceryList, [recipeName]: updatedIngredients}
+      }
     });
   }
 
