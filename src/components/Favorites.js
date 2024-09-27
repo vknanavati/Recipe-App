@@ -16,10 +16,11 @@ export function Favorites ({favorites, addFavorite}) {
                 </Grid>
                 <Grid container justifyContent={"center"}>
                     {favorites.map((recipe,index)=>(
-                        <Grid>
+                        <Grid key={index}>
                             <RecipeCard
                                 recipe={recipe}
                                 addFavorite={addFavorite}
+                                favorites={favorites}
                             />
                         </Grid>
                     ))}
