@@ -18,6 +18,20 @@ function App() {
   const [notes, setNotes] = useState("");
   const [notesList, setNotesList] = useState([]);
 
+  useEffect(()=>{
+    const localFavorites = localStorage.getItem("favorites");
+    setFavorites(JSON.parse(localFavorites))
+  }, [])
+
+  useEffect(() => {
+    //favorites persists in local storage when condition included
+    if (favorites.length > 0) {localStorage.setItem("favorites", JSON.stringify(favorites))};
+  }, [favorites]);
+
+  useEffect(() => {
+    console.log("groceryList updated: ", JSON.stringify(groceryList));
+    console.log("makeRecipe updated: ", JSON.stringify(makeRecipe));
+  }, [groceryList, makeRecipe]);
 
     //add and remove favorite recipe card
     const addFavorite = (recipe) => {
@@ -74,12 +88,6 @@ function App() {
       }
     });
   }
-
-  useEffect(() => {
-    console.log("groceryList updated: ", JSON.stringify(groceryList));
-    console.log("makeRecipe updated: ", JSON.stringify(makeRecipe));
-  }, [groceryList, makeRecipe]);
-
 
   return (
     <Container maxWidth={"false"} disableGutters>
