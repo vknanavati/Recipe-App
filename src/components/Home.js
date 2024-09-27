@@ -2,7 +2,7 @@ import {Button,Container, Typography, Alert, AlertTitle} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { RecipeCard } from './RecipeCard';
 
-export function Home({addFavorite, foodData, setFoodData, addMakeRecipe, alertFavorite, setAlertFavorite, alertRemove}) {
+export function Home({addFavorite, foodData, setFoodData, addMakeRecipe, alertFavorite, setAlertFavorite, alertRemove, favorites}) {
     console.log(process.env)
 
     const handleClick = (cusineType) => {
@@ -97,6 +97,8 @@ export function Home({addFavorite, foodData, setFoodData, addMakeRecipe, alertFa
                         recipe={hit.recipe}
                         addFavorite={addFavorite}
                         addMakeRecipe={addMakeRecipe}
+                        favorites={favorites}
+
                     />
                     )
                 })}
