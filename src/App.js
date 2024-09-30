@@ -34,6 +34,11 @@ function App() {
     setGroceryList( localGrocery ? JSON.parse(localGrocery) : {})
   }, [])
 
+  useEffect(()=>{
+    const localNotes = localStorage.getItem("notes");
+    setNotesList( localNotes ? JSON.parse(localNotes) : [])
+  }, [])
+
   //this useEffect is triggered only when favorites array is not empty
   useEffect(() => {
     //favorites persists in local storage when condition included
@@ -47,6 +52,10 @@ function App() {
   useEffect(() => {
     if (groceryList !== null && Object.keys(groceryList).length > 0) {localStorage.setItem("grocery", JSON.stringify(groceryList))};
   }, [groceryList]);
+
+  useEffect(() => {
+    if (notesList !== null && notesList.length > 0) {localStorage.setItem("notes", JSON.stringify(notesList))};
+  }, [notesList]);
 
   useEffect(() => {
     console.log("groceryList updated: ", JSON.stringify(groceryList));
