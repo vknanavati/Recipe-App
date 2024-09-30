@@ -3,6 +3,7 @@ import {RecipeCard} from './RecipeCard'
 import {Container,Typography} from '@mui/material';
 
 export function Favorites ({favorites, addFavorite}) {
+
     return (
         <Container sx={{paddingTop: '64px'}}>
             <Grid container justifyContent={"center"} direction={"column"} alignItems={"center"}>
@@ -14,6 +15,7 @@ export function Favorites ({favorites, addFavorite}) {
                         Favorite Recipes
                     </Typography>
                 </Grid>
+                {favorites.length > 0 &&(
                 <Grid container justifyContent={"center"}>
                     {favorites.map((recipe,index)=>(
                         <Grid key={index}>
@@ -25,6 +27,7 @@ export function Favorites ({favorites, addFavorite}) {
                         </Grid>
                     ))}
                 </Grid>
+                )}
             </Grid>
         </Container>
     )
