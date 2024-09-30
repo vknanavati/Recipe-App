@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid2';
 import Textarea from '@mui/joy/Textarea';
 import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemText, Button } from '@mui/material';
 
-export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe, setFilteredRecipe, notes, setNotesList, setNotes, notesList, isIngredient}) {
+export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe, setFilteredRecipe, notes, setNotesList, setNotes, notesList}) {
 
     const selectedRecipe = (choice) => {
         const filtered = makeRecipe.filter(item => item.label.includes(choice));
@@ -54,35 +54,32 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                 }}
             >
                 <List>
-                    {makeRecipe.map((title, i) => (
-                        <ListItem key={i}>
-                            <ListItemButton
-                                sx={{
-                                    backgroundColor: '#3A5B26',
-                                    borderRadius: 3,
-                                    color: 'white',
-                                    '&:hover': {
+                    {makeRecipe && (
+                        makeRecipe.map((title, i) => (
+                            <ListItem key={i}>
+                                <ListItemButton
+                                    sx={{
                                         backgroundColor: '#3A5B26',
-                                        border: '1px solid #000',
-                                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-                                    }
-                                }}
-                                onClick={() => selectedRecipe(title.label)}>
-                                <ListItemText>
-                                    {title.label}
-                                </ListItemText>
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
+                                        borderRadius: 3,
+                                        color: 'white',
+                                        '&:hover': {
+                                            backgroundColor: '#3A5B26',
+                                            border: '1px solid #000',
+                                            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                                        }
+                                    }}
+                                    onClick={() => selectedRecipe(title.label)}>
+                                    <ListItemText>
+                                        {title.label}
+                                    </ListItemText>
+                                </ListItemButton>
+                            </ListItem>
+                        ))
+                    )}
                 </List>
             </Drawer>
 
-            <Grid container justifyContent={"center"} direction={"column"} alignItems={"center"}>
-                <Grid>
-                    <Typography variant="h4" sx={{ marginTop: 5, marginBottom: 5 }}>
-                        Make Recipe
-                    </Typography>
-                </Grid>
+            <Grid container justifyContent={"center"} direction={"column"} alignItems={"center"} sx={{marginTop: 6}}>
                 {filteredRecipe.length === 0 && makeRecipe && (
                     <FirstRecipe
                         makeRecipe={makeRecipe}
