@@ -18,15 +18,35 @@ function App() {
   const [notes, setNotes] = useState("");
   const [notesList, setNotesList] = useState([]);
 
+  //empty array dependency means useEffect runs once when the component mounts
   useEffect(()=>{
     const localFavorites = localStorage.getItem("favorites");
     setFavorites(JSON.parse(localFavorites))
   }, [])
 
+  useEffect(()=>{
+    const localRecipe = localStorage.getItem("make recipe");
+    setMakeRecipe( localRecipe ? JSON.parse(localRecipe) : [])
+  }, [])
+
+  useEffect(()=>{
+    const localGrocery = localStorage.getItem("grocery");
+    setGroceryList( localGrocery ? JSON.parse(localGrocery) : {})
+  }, [])
+
+  //this useEffect is triggered only when favorites array is not empty
   useEffect(() => {
     //favorites persists in local storage when condition included
     if (favorites.length > 0) {localStorage.setItem("favorites", JSON.stringify(favorites))};
   }, [favorites]);
+
+  useEffect(() => {
+    if (makeRecipe !== null && makeRecipe.length > 0) {localStorage.setItem("make recipe", JSON.stringify(makeRecipe))};
+  }, [makeRecipe]);
+
+  useEffect(() => {
+    if (groceryList !== null && Object.keys(groceryList).length > 0) {localStorage.setItem("grocery", JSON.stringify(groceryList))};
+  }, [groceryList]);
 
   useEffect(() => {
     console.log("groceryList updated: ", JSON.stringify(groceryList));
@@ -59,7 +79,11 @@ function App() {
   }
 
   const addMakeRecipe = (recipe) => {
-    setMakeRecipe([...makeRecipe, recipe])
+    if (!(makeRecipe.filter(item => item.label === recipe.label).length > 0)){
+      setMakeRecipe([...makeRecipe, recipe]);
+    }
+    console.log("makeRecipe: ", makeRecipe);
+    console.log("recipe added to makeRecipe: ", recipe);
   }
 
   const addGrocery = (recipeName, ingredient) => {
