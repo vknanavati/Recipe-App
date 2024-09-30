@@ -27,7 +27,7 @@ export function MakeRecipeCard({recipe, addGrocery, groceryList}) {
             </Grid>
             {recipe.ingredients.map((ingredient, i)=>{
                 return (
-                <Grid container justifyContent={"center"} alignItems={"center"}>
+                <Grid key={i} container justifyContent={"center"} alignItems={"center"}>
                     <Grid>
                         <Typography key={i}>{ingredient.food}</Typography>
                     </Grid>
