@@ -15,6 +15,7 @@ function App() {
   const [filteredRecipe, setFilteredRecipe] = useState([]);
   const [alertFavorite, setAlertFavorite] = useState(false);
   const [alertRemove, setAlertRemove] = useState(false);
+  const [alertRecipe, setAlertRecipe] = useState(false)
   const [notes, setNotes] = useState("");
   const [notesList, setNotesList] = useState([]);
 
@@ -90,6 +91,10 @@ function App() {
   const addMakeRecipe = (recipe) => {
     if (!(makeRecipe.filter(item => item.label === recipe.label).length > 0)){
       setMakeRecipe([...makeRecipe, recipe]);
+      setAlertRecipe(true);
+      setTimeout(()=>{
+        setAlertRecipe(false)
+      }, 3000)
     }
     console.log("makeRecipe: ", makeRecipe);
     console.log("recipe added to makeRecipe: ", recipe);
@@ -145,7 +150,7 @@ function App() {
               Favorites ({favorites.length})
             </Typography>
             <Typography variant="h6" component={Link} to="/make" color="inherit" sx={{ textDecoration: 'none' }}>
-              Recipes
+              Recipes ({makeRecipe.length})
             </Typography>
           </Box>
         </Toolbar>
@@ -164,6 +169,7 @@ function App() {
             setAlertFavorite={setAlertFavorite}
             alertRemove={alertRemove}
             setAlertRemove={setAlertRemove}
+            alertRecipe={alertRecipe}
           />
         }
         />
