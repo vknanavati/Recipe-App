@@ -7,6 +7,10 @@ import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemT
 
 export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe, setFilteredRecipe, notes, setNotesList, setNotes, notesList}) {
 
+    useEffect(() => {
+        console.log("filteredRecipe updated: ", JSON.stringify(filteredRecipe));
+    }, [filteredRecipe]);
+
     const selectedRecipe = (choice) => {
         const filtered = makeRecipe.filter(item => item.label.includes(choice));
         console.log("choice: ", choice);
@@ -34,10 +38,6 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
         setNotes(input)
         console.log("NOTES: ", notes)
     }
-
-    useEffect(() => {
-        console.log("filteredRecipe updated: ", JSON.stringify(filteredRecipe));
-    }, [filteredRecipe]);
 
     return (
         <Container sx={{ paddingTop: '64px' }}>
