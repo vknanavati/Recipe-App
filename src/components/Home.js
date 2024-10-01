@@ -2,7 +2,7 @@ import {Button,Container, Typography, Alert, AlertTitle} from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { RecipeCard } from './RecipeCard';
 
-export function Home({addFavorite, foodData, setFoodData, addMakeRecipe, alertFavorite, setAlertFavorite, alertRemove, favorites}) {
+export function Home({addFavorite, foodData, setFoodData, addMakeRecipe, alertFavorite, setAlertFavorite, alertRemove, favorites, alertRecipe}) {
     console.log(process.env)
 
     const handleClick = (cusineType) => {
@@ -69,6 +69,22 @@ export function Home({addFavorite, foodData, setFoodData, addMakeRecipe, alertFa
             >
               <AlertTitle>Success</AlertTitle>
               Recipe added to Favorites!
+            </Alert>
+          )}
+          {alertRecipe && (
+            <Alert
+              severity="success"
+              sx={{
+                position: "fixed",
+                top: "30px",// 20px from the top of the screen
+                left: "50%", //left edge of alert at half the viewport width
+                transform: "translateX(-50%)", // moves alert to the left at half the width of the alert box
+                width: "auto", // adjust width based on content
+                zIndex: 9999 // alert appears above other content
+              }}
+            >
+              <AlertTitle>Success</AlertTitle>
+              Added to Recipes
             </Alert>
           )}
           {alertRemove && (
