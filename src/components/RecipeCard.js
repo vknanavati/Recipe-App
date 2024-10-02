@@ -6,12 +6,11 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 
 export function RecipeCard ({recipe, addFavorite, addMakeRecipe, favorites}) {
 
-    const isFavorite = favorites.some(item => item.label === recipe.label);
+    const isFavorite = favorites && favorites.some(item => item.label === recipe.label);
 
     console.log("recipe", recipe)
     return (
         <Grid
-            item
             sm={8}
             sx={{
               boxShadow: 6,
@@ -30,10 +29,9 @@ export function RecipeCard ({recipe, addFavorite, addMakeRecipe, favorites}) {
             >
               <FavoriteOutlined sx={{ color: "red"}}/>
             </IconButton>
-
           ):(
             <IconButton onClick={()=>addFavorite(recipe)}>
-            <FavoriteBorder/>
+              <FavoriteBorder/>
            </IconButton>
           )}
 
@@ -53,5 +51,5 @@ export function RecipeCard ({recipe, addFavorite, addMakeRecipe, favorites}) {
               </a>
           </Typography>
       </Grid>
-)
+  )
 }
