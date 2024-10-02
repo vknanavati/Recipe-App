@@ -4,6 +4,7 @@ import {Routes, Route, Link} from 'react-router-dom';
 import {Favorites} from './components/Favorites'
 import {Home} from './components/Home'
 import {MakeRecipe} from './components/MakeRecipe'
+import {About} from './components/About'
 import './App.css';
 
 function App() {
@@ -43,7 +44,7 @@ function App() {
   //this useEffect is triggered only when favorites array is not empty
   useEffect(() => {
     //favorites persists in local storage when condition included
-    if (favorites.length > 0) {localStorage.setItem("favorites", JSON.stringify(favorites))};
+    if (favorites !== null && favorites.length > 0) {localStorage.setItem("favorites", JSON.stringify(favorites))};
   }, [favorites]);
 
   useEffect(() => {
@@ -68,8 +69,9 @@ function App() {
     //adds recipe only if it is not already in favorites list
     //if length of filtered array > 0 then it will not add the recipe
     //checking if recipe exists in favorites array
-    if (!(favorites.filter(item => item.label === recipe.label).length > 0)) {
-      setFavorites([...favorites, recipe]);
+    const currentFavorites = favorites || [];
+    if (!(currentFavorites.filter(item => item.label === recipe.label).length > 0)) {
+      setFavorites([...currentFavorites, recipe]);
       setAlertFavorite(true);
       setTimeout(() => {
         setAlertFavorite(false)
@@ -79,7 +81,7 @@ function App() {
       //so if 'heart button' is clicked again on recipe card it will remove that recipe because it already exists in favorites
       //this happens because the condition the array is to return array that doesn't match recipe being passed
       //so a new array is created excluding matching recipe label
-      setFavorites(favorites.filter((item)=> item.label !== recipe.label));
+      setFavorites(currentFavorites.filter((item)=> item.label !== recipe.label));
       setAlertRemove(true);
       setTimeout(()=>{
         setAlertRemove(false)
@@ -146,11 +148,14 @@ function App() {
             <Typography variant="h6" component={Link} to="/" color="inherit" sx={{ textDecoration: 'none' }}>
               Home
             </Typography>
+            <Typography variant="h6" component={Link} to="/about" color="inherit" sx={{ textDecoration: 'none' }}>
+              About
+            </Typography>
             <Typography variant="h6" component={Link} to="/favorites" color="inherit" sx={{ textDecoration: 'none' }}>
-              Favorites ({favorites.length})
+              Favorites ({favorites !== null && (favorites.length)})
             </Typography>
             <Typography variant="h6" component={Link} to="/make" color="inherit" sx={{ textDecoration: 'none' }}>
-              Recipes ({makeRecipe.length})
+              Recipes ({makeRecipe.length > 0 && (makeRecipe.length) })
             </Typography>
           </Box>
         </Toolbar>
@@ -173,6 +178,7 @@ function App() {
           />
         }
         />
+      <Route path="/about" element={<About/>}/>
       <Route path="/favorites" element={<Favorites favorites={favorites} addFavorite={addFavorite}/>}/>
       <Route
         path="/make"
