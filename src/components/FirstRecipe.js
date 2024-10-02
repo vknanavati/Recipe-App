@@ -23,7 +23,6 @@ export function FirstRecipe ({makeRecipe, groceryList, addGrocery, notes, notesL
             {makeRecipe.length > 0 && (
                 <Grid>
                     <Grid
-                        item
                         sm={8}
                         sx={{
                             boxShadow: 6,
