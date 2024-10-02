@@ -8,7 +8,6 @@ import IconButton from '@mui/joy/IconButton';
 export function MakeRecipeCard({recipe, addGrocery, groceryList}) {
     return(
         <Grid
-            item
             sm={8}
             sx={{
                 boxShadow: 6,
