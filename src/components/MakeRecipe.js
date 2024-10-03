@@ -4,11 +4,15 @@ import { FirstRecipe } from "./FirstRecipe";
 import Grid from '@mui/material/Grid2';
 import Textarea from '@mui/joy/Textarea';
 import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemText, Button } from '@mui/material';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import IconButton from '@mui/joy/IconButton';
 
 export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe, setFilteredRecipe, notes, setNotesList, setNotes, notesList}) {
 
     useEffect(() => {
         console.log("filteredRecipe updated: ", JSON.stringify(filteredRecipe));
+        console.log(filteredRecipe.length)
+
     }, [filteredRecipe]);
 
     const selectedRecipe = (choice) => {
@@ -18,19 +22,18 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
         console.log("filtered:", filtered);
     }
 
-    const handleSubmit = (e) => {
+    // recipe is the recipe name
+    const handleSubmit = (e, recipe) => {
         e.preventDefault();
 
-        const notesObject = {
-            id: Math.floor(Math.random() * 1000),
-            value: notes
-        }
+        setNotesList((notesObject) => {
+            const currentNotes = notesObject[recipe] || [];
+            console.log("currentNotes: ", currentNotes);
+            console.log("before adding new note to notesObject", notesObject)
+            console.log("recipe passed to handleSubmit: ", recipe)
 
-        setNotesList([...notesList, notesObject])
-
-        console.log("Notes Object: ", notesObject)
-        console.log("Notes List: ", notesList)
-
+            return {...notesObject, [recipe] : [...currentNotes, notes]}
+        })
     }
 
     const handleNoteChange = (e) => {
@@ -94,6 +97,7 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                 <Grid>
                     {filteredRecipe.map((recipe, index) => (
                         <Grid container key={index}>
+                            {JSON.stringify(recipe)}
                             <Grid sx={{ marginRight: 10 }}>
                                 <MakeRecipeCard
                                     recipe={recipe}
@@ -103,7 +107,7 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                             </Grid>
                             {makeRecipe.length > 0 && (
                                 <Grid>
-                                    <Grid item sm={8} sx={{
+                                    <Grid sm={8} sx={{
                                         boxShadow: 6,
                                         padding: 2,
                                         textAlign: "center",
@@ -129,16 +133,31 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                                             </ol>
                                         )}
 
-                                        <ul>
-                                            {notesList.map((notesObject, i) => (
-                                                <Grid container key={i}>
-                                                    <li><Typography sx={{ fontSize: 20 }}>{notesObject.value}</Typography></li>
+                                        {notesList[recipe.label] && notesList[recipe.label].length > 0 && (
+                                            <ul>
+                                            {notesList[recipe.label].map((userNote, i) => {
+                                                return (
+
+                                                <Grid container alignItems={"center"}>
+                                                    <Grid>
+                                                        <li><Typography sx={{ fontSize: 20}}>{userNote}</Typography></li>
+                                                    </Grid>
+                                                    <Grid>
+                                                        <IconButton onClick={() => console.log("Remove Note", userNote)}>
+                                                            <RemoveCircleIcon />
+                                                        </IconButton>
+                                                    </Grid>
                                                 </Grid>
-                                            ))}
-                                        </ul>
+                                                )
+                                            })}
+                                            </ul>
+                                        )}
+
 
                                     </Grid>
-                                    <form onSubmit={handleSubmit}>
+                                    {filteredRecipe.map((recipe, index)=> (
+
+                                    <form onSubmit={(e)=>handleSubmit(e, recipe.label)}>
                                         <Grid
                                             sx={{
                                                 boxShadow: 6,
@@ -161,6 +180,7 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                                             <Button type="submit">Save</Button>
                                         </Grid>
                                     </form>
+                                    ))}
                                 </Grid>
                             )}
                         </Grid>
