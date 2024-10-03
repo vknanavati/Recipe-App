@@ -1,7 +1,10 @@
 import {Typography, Button} from '@mui/material';
 import Textarea from '@mui/joy/Textarea';
 import Grid from '@mui/material/Grid2';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import IconButton from '@mui/joy/IconButton';
 import { MakeRecipeCard } from "./MakeRecipeCard";
+
 
 export function FirstRecipe ({makeRecipe, groceryList, addGrocery, notes, notesList, handleSubmit, handleNoteChange}) {
 
@@ -58,8 +61,15 @@ export function FirstRecipe ({makeRecipe, groceryList, addGrocery, notes, notesL
 
                         <ul>
                             {notesList.map((notesObject, i) => (
-                                <Grid container key={i}>
-                                    <li><Typography sx={{ fontSize: 20 }}>{notesObject.value}</Typography></li>
+                                <Grid container alignItems={"center"} key={i}>
+                                    <Grid>
+                                        <li><Typography sx={{ fontSize: 20 }}>{notesObject.value}</Typography></li>
+                                    </Grid>
+                                    <Grid>
+                                        <IconButton onClick={() => console.log("Removed note")}>
+                                            <RemoveCircleIcon />
+                                        </IconButton>
+                                    </Grid>
                                 </Grid>
                             ))}
                         </ul>
