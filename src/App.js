@@ -105,29 +105,30 @@ function App() {
     console.log("recipe added to makeRecipe: ", recipe);
   }
 
+  // onClick={() => addGrocery(recipe.label, ingredient.food)}
   const addGrocery = (recipeName, ingredient) => {
 
-    setGroceryList((groceryList)=>{
+    setGroceryList((groceryObject)=>{
 
-      //sets current ingredients to groceryList[recipeName] or to empty array if groceryList[recipeName] does not exists
-      const currentIngredients = groceryList[recipeName] || [];
+      //sets current ingredients to grocery[recipeName] or to empty array if groceryObject[recipeName] does not exists
+      const currentIngredients = groceryObject[recipeName] || [];
 
       console.log("currentIngredients: ", currentIngredients);
-      console.log("before adding new ingredient groceryList ", groceryList);
+      console.log("before adding new ingredient to groceryObject ", groceryObject);
       console.log("recipeName: ", recipeName);
 
       if (!currentIngredients.includes(ingredient)) {
 
         console.log("added new ingredient: ", ingredient)
 
-        return { ...groceryList, [recipeName] : [...currentIngredients, ingredient] };
+        return { ...groceryObject, [recipeName] : [...currentIngredients, ingredient] };
 
       } else {
           console.log("ingredient already in list");
 
           const updatedIngredients = currentIngredients.filter((item) => item !== ingredient);
 
-          return {...groceryList, [recipeName]: updatedIngredients}
+          return {...groceryObject, [recipeName]: updatedIngredients}
       }
     });
   }
