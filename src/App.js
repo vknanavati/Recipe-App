@@ -20,6 +20,7 @@ function App() {
   const [notes, setNotes] = useState("");
   const [notesList, setNotesList] = useState([]);
 
+
   //empty array dependency means useEffect runs once when the component mounts
   useEffect(()=>{
     const localFavorites = localStorage.getItem("favorites");
@@ -97,6 +98,8 @@ function App() {
       setTimeout(()=>{
         setAlertRecipe(false)
       }, 3000)
+    } else {
+      setMakeRecipe(makeRecipe.filter((item)=> item.label !== recipe.label))
     }
     console.log("makeRecipe: ", makeRecipe);
     console.log("recipe added to makeRecipe: ", recipe);
