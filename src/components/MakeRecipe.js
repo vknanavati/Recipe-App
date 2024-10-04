@@ -12,8 +12,9 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
     useEffect(() => {
         console.log("filteredRecipe updated: ", JSON.stringify(filteredRecipe));
         console.log(filteredRecipe.length)
+        console.log("notesList: ", notesList)
 
-    }, [filteredRecipe]);
+    }, [filteredRecipe, notesList]);
 
     const selectedRecipe = (choice) => {
         const filtered = makeRecipe.filter(item => item.label.includes(choice));
@@ -25,6 +26,7 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
     // recipe is the recipe name
     const handleSubmit = (e, recipe) => {
         e.preventDefault();
+        setNotes("");
 
         setNotesList((notesObject) => {
             const currentNotes = notesObject[recipe] || [];
