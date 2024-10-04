@@ -24,7 +24,7 @@ function App() {
   //empty array dependency means useEffect runs once when the component mounts
   useEffect(()=>{
     const localFavorites = localStorage.getItem("favorites");
-    setFavorites(JSON.parse(localFavorites))
+    setFavorites(localFavorites ? JSON.parse(localFavorites): [])
   }, [])
 
   useEffect(()=>{
@@ -63,7 +63,8 @@ function App() {
   useEffect(() => {
     console.log("groceryList updated: ", JSON.stringify(groceryList));
     console.log("makeRecipe updated: ", JSON.stringify(makeRecipe));
-  }, [groceryList, makeRecipe]);
+    console.log("favorites updated: ", JSON.stringify(favorites));
+  }, [groceryList, makeRecipe, favorites]);
 
     //add and remove favorite recipe card
     const addFavorite = (recipe) => {
