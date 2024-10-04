@@ -23,26 +23,40 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
         console.log("filtered:", filtered);
     }
 
+    const handleNoteChange = (e) => {
+        const input = e.target.value
+        setNotes(input)
+        console.log("NOTES: ", notes)
+    }
     // recipe is the recipe name
     const handleSubmit = (e, recipe) => {
         e.preventDefault();
         setNotes("");
 
         setNotesList((notesObject) => {
+            //currentNotes is the value for the key recipe
+            //this checks if recipe exists in notesObject. If yes it returns the value if not truthy it sets value to empty brackets
             const currentNotes = notesObject[recipe] || [];
             console.log("currentNotes: ", currentNotes);
-            console.log("before adding new note to notesObject", notesObject)
+            console.log("notesObject", notesObject)
             console.log("recipe passed to handleSubmit: ", recipe)
 
             return {...notesObject, [recipe] : [...currentNotes, notes]}
         })
     }
 
-    const handleNoteChange = (e) => {
-        const input = e.target.value
-        setNotes(input)
-        console.log("NOTES: ", notes)
+    const handleRemoveNote = (note, recipe) =>{
+
+     setNotesList((notesObject)=>{
+        const currentNotes = notesObject[recipe] || [];
+        //create new array of notes without the note to be deleted
+        const updatedNotes = currentNotes.filter((item)=> item !== note)
+        //set updatedNotes for the recipe passed through function
+        return {...notesObject, [recipe]: updatedNotes}
+
+     })
     }
+
 
     return (
         <Container sx={{ paddingTop: '64px' }}>
@@ -145,7 +159,7 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                                                         <li><Typography sx={{ fontSize: 20}}>{userNote}</Typography></li>
                                                     </Grid>
                                                     <Grid>
-                                                        <IconButton onClick={() => console.log("Remove Note", userNote)}>
+                                                        <IconButton onClick={() => handleRemoveNote(userNote, recipe.label)}>
                                                             <RemoveCircleIcon />
                                                         </IconButton>
                                                     </Grid>
