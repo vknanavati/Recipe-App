@@ -18,7 +18,7 @@ function App() {
   const [alertRemove, setAlertRemove] = useState(false);
   const [alertRecipe, setAlertRecipe] = useState(false)
   const [notes, setNotes] = useState("");
-  const [notesList, setNotesList] = useState([]);
+  const [notesList, setNotesList] = useState({});
 
 
   //empty array dependency means useEffect runs once when the component mounts
@@ -39,7 +39,7 @@ function App() {
 
   useEffect(()=>{
     const localNotes = localStorage.getItem("notes");
-    setNotesList( localNotes ? JSON.parse(localNotes) : [])
+    setNotesList( localNotes ? JSON.parse(localNotes) : {})
   }, [])
 
   //this useEffect is triggered only when favorites array is not empty
@@ -57,7 +57,7 @@ function App() {
   }, [groceryList]);
 
   useEffect(() => {
-    if (notesList !== null && notesList.length > 0) {localStorage.setItem("notes", JSON.stringify(notesList))};
+    if (notesList !== null && Object.keys(notesList).length > 0) {localStorage.setItem("notes", JSON.stringify(notesList))};
   }, [notesList]);
 
   useEffect(() => {
