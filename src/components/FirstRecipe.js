@@ -12,6 +12,7 @@ export function FirstRecipe ({makeRecipe, groceryList, addGrocery, notes, notesL
         return null
     }
     const firstRecipe = makeRecipe[0];
+    console.log("firstRecipe: ", firstRecipe)
 
     return(
         <Grid container>
@@ -59,45 +60,51 @@ export function FirstRecipe ({makeRecipe, groceryList, addGrocery, notes, notesL
                             </ol>
                         )}
 
-                        <ul>
-                            {notesList.map((notesObject, i) => (
-                                <Grid container alignItems={"center"} key={i}>
+                        {notesList[firstRecipe.label] && notesList[firstRecipe.label].length > 0 && (
+                            <ul>
+                            {notesList[firstRecipe.label].map((userNote, i) => {
+                                return (
+
+                                <Grid container alignItems={"center"}>
                                     <Grid>
-                                        <li><Typography sx={{ fontSize: 20 }}>{notesObject.value}</Typography></li>
+                                        <li><Typography sx={{ fontSize: 20}}>{userNote}</Typography></li>
                                     </Grid>
                                     <Grid>
-                                        <IconButton onClick={() => console.log("Removed note")}>
+                                        <IconButton onClick={() => console.log("Remove Note", userNote)}>
                                             <RemoveCircleIcon />
                                         </IconButton>
                                     </Grid>
                                 </Grid>
-                            ))}
-                        </ul>
+                                )
+                            })}
+                            </ul>
+                        )}
                     </Grid>
-                    <form onSubmit={handleSubmit}>
-                        <Grid
-                            sx={{
-                                boxShadow: 6,
-                                padding: 2,
-                                textAlign: "center",
-                                width: "370px",
-                                height: "auto",
-                                marginLeft: 20,
-                                marginTop: 4,
-                                marginBottom: 10,
-                                borderRadius: 3
-                            }}
-                        >
-                            <Typography variant="h5" sx={{ marginBottom: 2 }}>Notes</Typography>
-                            <Textarea
-                                type={"text"}
-                                value={notes}
-                                onChange={(e)=>handleNoteChange(e)}
-                                placeholder="Recipe notes"
-                            />
-                            <Button type="submit">Save</Button>
-                        </Grid>
-                    </form>
+                        <form onSubmit={(e)=>handleSubmit(e, firstRecipe.label)}>
+                            <Grid
+
+                                sx={{
+                                    boxShadow: 6,
+                                    padding: 2,
+                                    textAlign: "center",
+                                    width: "370px",
+                                    height: "auto",
+                                    marginLeft: 20,
+                                    marginTop: 4,
+                                    marginBottom: 10,
+                                    borderRadius: 3
+                                }}
+                            >
+                                <Typography variant="h5" sx={{ marginBottom: 2 }}>Notes</Typography>
+                                <Textarea
+                                    type={"text"}
+                                    value={notes}
+                                    onChange={(e)=>handleNoteChange(e)}
+                                    placeholder="Recipe notes" />
+                                <Button type="submit">Save</Button>
+                            </Grid>
+                        </form>
+
                 </Grid>
                 )}
         </Grid>
