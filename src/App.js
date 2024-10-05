@@ -21,6 +21,9 @@ function App() {
   const [notesList, setNotesList] = useState({});
 
 
+  useEffect(()=>{
+    localStorage.clear()
+  })
   //empty array dependency means useEffect runs once when the component mounts
   useEffect(()=>{
     const localFavorites = localStorage.getItem("favorites");
