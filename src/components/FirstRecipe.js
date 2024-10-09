@@ -1,4 +1,4 @@
-import {Typography, Button} from '@mui/material';
+import {Typography, Button, Box} from '@mui/material';
 import Textarea from '@mui/joy/Textarea';
 import Grid from '@mui/material/Grid2';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
@@ -6,7 +6,7 @@ import IconButton from '@mui/joy/IconButton';
 import { MakeRecipeCard } from "./MakeRecipeCard";
 
 
-export function FirstRecipe ({makeRecipe, groceryList, addGrocery, notes, notesList, handleSubmit, handleNoteChange}) {
+export function FirstRecipe ({makeRecipe, groceryList, addGrocery, notes, notesList, handleSubmit, handleNoteChange, addMakeRecipe}) {
 
     if (!makeRecipe || makeRecipe.length === 0) {
         return null
@@ -16,7 +16,16 @@ export function FirstRecipe ({makeRecipe, groceryList, addGrocery, notes, notesL
 
     return(
         <Grid container>
-            <Grid>
+            <Box display="flex" justifyContent={"flex-end"} sx={{width: '100%'}}>
+                <Button
+                    variant="contained"
+                    sx={{ marginLeft: 'auto', backgroundColor: '#3A5B26' }}
+                    onClick={()=>addMakeRecipe(firstRecipe)}
+                >
+                    Remove Recipe
+                </Button>
+            </Box>
+            <Grid sx={{marginLeft: 20}}>
                 <MakeRecipeCard
                     recipe={firstRecipe}
                     addGrocery={addGrocery}
@@ -106,8 +115,7 @@ export function FirstRecipe ({makeRecipe, groceryList, addGrocery, notes, notesL
                         </form>
 
                 </Grid>
-                )}
-        </Grid>
-
+            )}
+    </Grid>
     )
 }
