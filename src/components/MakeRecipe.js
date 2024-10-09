@@ -3,11 +3,11 @@ import { MakeRecipeCard } from "./MakeRecipeCard";
 import { FirstRecipe } from "./FirstRecipe";
 import Grid from '@mui/material/Grid2';
 import Textarea from '@mui/joy/Textarea';
-import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemText, Button } from '@mui/material';
+import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemText, Button, Box } from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import IconButton from '@mui/joy/IconButton';
 
-export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe, setFilteredRecipe, notes, setNotesList, setNotes, notesList}) {
+export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe, setFilteredRecipe, notes, setNotesList, setNotes, notesList, addMakeRecipe}) {
 
     useEffect(() => {
         console.log("filteredRecipe updated: ", JSON.stringify(filteredRecipe));
@@ -108,12 +108,21 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                         notesList={notesList}
                         handleSubmit={handleSubmit}
                         handleNoteChange={handleNoteChange}
+                        addMakeRecipe={addMakeRecipe}
                     />
                 )}
                 <Grid>
                     {filteredRecipe.map((recipe, index) => (
                         <Grid container key={index}>
-                            {JSON.stringify(recipe)}
+                            <Box display="flex" justifyContent={"flex-end"} sx={{width: '100%'}}>
+                                <Button
+                                    variant="contained"
+                                    sx={{ marginLeft: 'auto', backgroundColor: '#3A5B26' }}
+                                    onClick={()=>addMakeRecipe(recipe)}
+                                >
+                                    Remove Recipe
+                                </Button>
+                            </Box>
                             <Grid sx={{ marginRight: 10 }}>
                                 <MakeRecipeCard
                                     recipe={recipe}
