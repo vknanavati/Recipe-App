@@ -20,6 +20,10 @@ function App() {
   const [notes, setNotes] = useState("");
   const [notesList, setNotesList] = useState({});
 
+  // useEffect(()=>{
+  //   localStorage.clear()
+  // })
+
   //empty array dependency means useEffect runs once when the component mounts
   useEffect(()=>{
     const localFavorites = localStorage.getItem("favorites");
@@ -98,11 +102,14 @@ function App() {
       setTimeout(()=>{
         setAlertRecipe(false)
       }, 3000)
+      console.log("makeRecipe: ", makeRecipe);
+      console.log("recipe added to makeRecipe: ", recipe);
     } else {
-      setMakeRecipe(makeRecipe.filter((item)=> item.label !== recipe.label))
+      setMakeRecipe(makeRecipe.filter((item)=> item.label !== recipe.label));
+      console.log("recipe removed: ", recipe);
+      setFilteredRecipe([]);
+
     }
-    console.log("makeRecipe: ", makeRecipe);
-    console.log("recipe added to makeRecipe: ", recipe);
   }
 
   // onClick={() => addGrocery(recipe.label, ingredient.food)}
@@ -159,7 +166,8 @@ function App() {
               Favorites ({favorites !== null && (favorites.length)})
             </Typography>
             <Typography variant="h6" component={Link} to="/make" color="inherit" sx={{ textDecoration: 'none' }}>
-              Recipes ({makeRecipe.length > 0 && (makeRecipe.length) })
+              Recipes ({makeRecipe.length !== null && (makeRecipe.length) })
+              {console.log("****MAKE RECIPE NAV LINK: ", makeRecipe.length > 0 && (makeRecipe.length))}
             </Typography>
           </Box>
         </Toolbar>
