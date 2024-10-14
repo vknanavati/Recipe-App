@@ -1,21 +1,19 @@
 import { useEffect } from "react";
-import { MakeRecipeCard } from "./MakeRecipeCard";
+import { DisplayFiltered } from "./DisplayFiltered";
 import { FirstRecipe } from "./FirstRecipe";
 import Grid from '@mui/material/Grid2';
-import Textarea from '@mui/joy/Textarea';
-import {Container, Typography, Drawer, List, ListItemButton, ListItem, ListItemText, Button, Box } from '@mui/material';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import IconButton from '@mui/joy/IconButton';
+import {Container, Drawer, List, ListItemButton, ListItem, ListItemText} from '@mui/material';
 
 export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe, setFilteredRecipe, notes, setNotesList, setNotes, notesList, addMakeRecipe}) {
 
     useEffect(() => {
         console.log("filteredRecipe updated: ", JSON.stringify(filteredRecipe));
-        console.log(filteredRecipe.length)
+        console.log("filteredRecipe length: ", filteredRecipe.length)
         console.log("notesList: ", notesList)
 
     }, [filteredRecipe, notesList]);
 
+    //triggered when you click on a recipe in the side drawer
     const selectedRecipe = (choice) => {
         const filtered = makeRecipe.filter(item => item.label.includes(choice));
         console.log("choice: ", choice);
@@ -109,108 +107,28 @@ export function MakeRecipe({makeRecipe, addGrocery, groceryList, filteredRecipe,
                         handleSubmit={handleSubmit}
                         handleNoteChange={handleNoteChange}
                         addMakeRecipe={addMakeRecipe}
+                        handleRemoveNote={handleRemoveNote}
                     />
                 )}
-                <Grid>
-                    {filteredRecipe.map((recipe, index) => (
-                        <Grid container key={index}>
-                            <Box display="flex" justifyContent={"flex-end"} sx={{width: '100%'}}>
-                                <Button
-                                    variant="contained"
-                                    sx={{ marginLeft: 'auto', backgroundColor: '#3A5B26' }}
-                                    onClick={()=>addMakeRecipe(recipe)}
-                                >
-                                    Remove Recipe
-                                </Button>
-                            </Box>
-                            <Grid sx={{ marginRight: 10 }}>
-                                <MakeRecipeCard
-                                    recipe={recipe}
-                                    addGrocery={addGrocery}
-                                    groceryList={groceryList}
-                                />
-                            </Grid>
-                            {makeRecipe.length > 0 && (
-                                <Grid>
-                                    <Grid sm={8} sx={{
-                                        boxShadow: 6,
-                                        padding: 2,
-                                        textAlign: "center",
-                                        width: "370px",
-                                        height: "auto",
-                                        marginLeft: 20,
-                                        marginTop: 4,
-                                        marginBottom: 10,
-                                        borderRadius: 3
-                                    }}>
-                                        <Typography variant="h5" sx={{ marginBottom: 3 }}>
-                                            Grocery List
-                                        </Typography>
-                                        {groceryList[recipe.label] && groceryList[recipe.label].length > 0 && (
-                                            <ol>
-                                                {groceryList[recipe.label].map((item, i) => (
-                                                    <Grid container key={i}>
-                                                        <Grid>
-                                                            <li><Typography sx={{ fontSize: 20 }}>{item}</Typography></li>
-                                                        </Grid>
-                                                    </Grid>
-                                                ))}
-                                            </ol>
-                                        )}
 
-                                        {notesList[recipe.label] && notesList[recipe.label].length > 0 && (
-                                            <ul>
-                                            {notesList[recipe.label].map((userNote, i) => {
-                                                return (
-
-                                                <Grid container alignItems={"center"}>
-                                                    <Grid>
-                                                        <li><Typography sx={{ fontSize: 20}}>{userNote}</Typography></li>
-                                                    </Grid>
-                                                    <Grid>
-                                                        <IconButton onClick={() => handleRemoveNote(userNote, recipe.label)}>
-                                                            <RemoveCircleIcon />
-                                                        </IconButton>
-                                                    </Grid>
-                                                </Grid>
-                                                )
-                                            })}
-                                            </ul>
-                                        )}
+                {filteredRecipe.length > 0 && makeRecipe && (
+                    filteredRecipe.map((makeRecipe, index)=> (
+                        <DisplayFiltered
+                            makeRecipe={makeRecipe}
+                            groceryList={groceryList}
+                            addGrocery={addGrocery}
+                            notes={notes}
+                            notesList={notesList}
+                            handleSubmit={handleSubmit}
+                            handleNoteChange={handleNoteChange}
+                            addMakeRecipe={addMakeRecipe}
+                            handleRemoveNote={handleRemoveNote}
+                            filteredRecipe={filteredRecipe}
+                        />
+                    ))
 
 
-                                    </Grid>
-                                    {filteredRecipe.map((recipe, index)=> (
-
-                                    <form onSubmit={(e)=>handleSubmit(e, recipe.label)}>
-                                        <Grid
-                                            sx={{
-                                                boxShadow: 6,
-                                                padding: 2,
-                                                textAlign: "center",
-                                                width: "370px",
-                                                height: "auto",
-                                                marginLeft: 20,
-                                                marginTop: 4,
-                                                marginBottom: 10,
-                                                borderRadius: 3
-                                            }}
-                                        >
-                                            <Typography variant="h5" sx={{ marginBottom: 2 }}>Notes</Typography>
-                                            <Textarea
-                                                type={"text"}
-                                                value={notes}
-                                                onChange={(e)=>handleNoteChange(e)}
-                                                placeholder="Recipe notes" />
-                                            <Button type="submit">Save</Button>
-                                        </Grid>
-                                    </form>
-                                    ))}
-                                </Grid>
-                            )}
-                        </Grid>
-                    ))}
-                </Grid>
+                )}
             </Grid>
         </Container>
     );
