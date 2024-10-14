@@ -6,7 +6,7 @@ import IconButton from '@mui/joy/IconButton';
 import { MakeRecipeCard } from "./MakeRecipeCard";
 
 
-export function FirstRecipe ({makeRecipe, groceryList, addGrocery, notes, notesList, handleSubmit, handleNoteChange, addMakeRecipe}) {
+export function FirstRecipe ({makeRecipe, groceryList, addGrocery, notes, notesList, handleSubmit, handleNoteChange, addMakeRecipe, handleRemoveNote}) {
 
     if (!makeRecipe || makeRecipe.length === 0) {
         return null
@@ -79,7 +79,8 @@ export function FirstRecipe ({makeRecipe, groceryList, addGrocery, notes, notesL
                                         <li><Typography sx={{ fontSize: 20}}>{userNote}</Typography></li>
                                     </Grid>
                                     <Grid>
-                                        <IconButton onClick={() => console.log("Remove Note", userNote)}>
+                                        {/* <IconButton onClick={() => console.log("Remove Note", userNote)}> */}
+                                        <IconButton onClick={() => handleRemoveNote(userNote, firstRecipe.label)}>
                                             <RemoveCircleIcon />
                                         </IconButton>
                                     </Grid>
