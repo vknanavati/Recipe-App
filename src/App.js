@@ -9,8 +9,12 @@ import './App.css';
 
 function App() {
 
-  const [favorites, setFavorites] = useState([]);
-  const [makeRecipe, setMakeRecipe] = useState([]);
+  const [favorites, setFavorites] = useState(()=> {
+    return JSON.parse(localStorage.getItem("favorites")) || []
+  });
+  const [makeRecipe, setMakeRecipe] = useState(()=>{
+    return JSON.parse(localStorage.getItem("make recipe")) || []
+  });
   const [foodData, setFoodData] = useState("");
   const [groceryList, setGroceryList] = useState({});
   const [filteredRecipe, setFilteredRecipe] = useState([]);
@@ -24,17 +28,7 @@ function App() {
   //   localStorage.clear()
   // })
 
-  //empty array dependency means useEffect runs once when the component mounts
-  useEffect(()=>{
-    const localFavorites = localStorage.getItem("favorites");
-    setFavorites(localFavorites ? JSON.parse(localFavorites): [])
-  }, [])
-
-  useEffect(()=>{
-    const localRecipe = localStorage.getItem("make recipe");
-    setMakeRecipe( localRecipe ? JSON.parse(localRecipe) : [])
-  }, [])
-
+  // empty array dependency means useEffect runs once when the component mounts
   useEffect(()=>{
     const localGrocery = localStorage.getItem("grocery");
     setGroceryList( localGrocery ? JSON.parse(localGrocery) : {})
@@ -47,12 +41,12 @@ function App() {
 
   //this useEffect is triggered only when favorites array is not empty
   useEffect(() => {
-    //favorites persists in local storage when condition included
-    if (favorites !== null && favorites.length > 0) {localStorage.setItem("favorites", JSON.stringify(favorites))};
+    //favorites persists upon refresh in local storage when condition included
+    if (favorites !== null) {localStorage.setItem("favorites", JSON.stringify(favorites))};
   }, [favorites]);
 
   useEffect(() => {
-    if (makeRecipe !== null && makeRecipe.length > 0) {localStorage.setItem("make recipe", JSON.stringify(makeRecipe))};
+    if (makeRecipe !== null) {localStorage.setItem("make recipe", JSON.stringify(makeRecipe))};
   }, [makeRecipe]);
 
   useEffect(() => {
