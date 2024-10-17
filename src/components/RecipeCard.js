@@ -8,7 +8,7 @@ export function RecipeCard ({recipe, addFavorite, addMakeRecipe, favorites}) {
 
     const isFavorite = favorites && favorites.some(item => item.label === recipe.label);
 
-    console.log("recipe", recipe)
+    // console.log("recipe", recipe)
     return (
         <Grid
             sm={8}
