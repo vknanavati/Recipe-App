@@ -21,7 +21,6 @@ export function Home({addFavorite, foodData, setFoodData, addMakeRecipe, alertFa
         <Container sx={{paddingTop: '64px'}}>
 
           <Grid container justifyContent={"center"} direction={"column"} alignItems={"center"}>
-
             <Typography
               variant="h3"
               sx={{marginTop: 5, marginBottom: 2}}
@@ -51,7 +50,6 @@ export function Home({addFavorite, foodData, setFoodData, addMakeRecipe, alertFa
               <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("nordic")}>Nordic</Button>
               <Button sx={{margin: 3, backgroundColor: '#3A5B26', fontSize: 18}} variant="contained" onClick={()=>handleClick("south american")}>South American</Button>
             </Grid>
-
           </Grid>
 
           {alertFavorite && (
@@ -106,7 +104,7 @@ export function Home({addFavorite, foodData, setFoodData, addMakeRecipe, alertFa
         {foodData && (
             <Grid container justifyContent={"center"} sx={{marginTop: 5}}>
                 {foodData.hits.map((hit, index) => {
-                    console.log("HIT from foodData.hits:", hit);
+                    // console.log("HIT from foodData.hits:", hit);
                     return (
                     <RecipeCard
                         key={index}
@@ -114,13 +112,11 @@ export function Home({addFavorite, foodData, setFoodData, addMakeRecipe, alertFa
                         addFavorite={addFavorite}
                         addMakeRecipe={addMakeRecipe}
                         favorites={favorites}
-
                     />
                     )
                 })}
             </Grid>
         )}
       </Container>
-
     )
 }
